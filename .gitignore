@@ -1,0 +1,11 @@
+.DS_Store
+
+/node_modules
+package-lock.json
+
+/assets/logos
+/assets/photos
+/assets/font
+
+site/
+/build
