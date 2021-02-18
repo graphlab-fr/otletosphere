@@ -1,0 +1,1169 @@
+
+
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation du projet Otletosphère">
+      
+      
+        <link rel="canonical" href="https://hyperotlet.github.io/otletosphere/fr/developpement/inscrire-donnees/">
+      
+      
+        <meta name="author" content="Guillaume Brioudes <https://myllaume.fr/>">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
+    
+    
+      
+        <title>Inscrire des données dans l'Otletosphère</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a2408e81.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+    
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extras/style.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modele-des-donnees" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://hyperotlet.github.io/otletosphere/fr/" title="Documentation Otletosphère" class="md-header-nav__button md-logo" aria-label="Documentation Otletosphère">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Documentation Otletosphère
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Inscrire des données dans l'Otletosphère
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/hyperotlet/otletosphere" title="Aller au dépôt" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hyperotlet/otletosphere
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://hyperotlet.github.io/otletosphere/fr/" title="Documentation Otletosphère" class="md-nav__button md-logo" aria-label="Documentation Otletosphère">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Documentation Otletosphère
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/hyperotlet/otletosphere" title="Aller au dépôt" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hyperotlet/otletosphere
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Accueil" class="md-nav__link">
+      Accueil
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Démarche
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Démarche" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Démarche
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../demarche/choix-technique/" title="Choix techniques" class="md-nav__link">
+      Choix techniques
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../demarche/multilingue/" title="Multilingue" class="md-nav__link">
+      Multilingue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../demarche/structure-donnees/" title="Structure des données" class="md-nav__link">
+      Structure des données
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Guide utilisation
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Guide utilisation" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Guide utilisation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../utilisation/elements-interface/" title="Éléments d'interface" class="md-nav__link">
+      Éléments d'interface
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../utilisation/navigation-reseau/" title="Naviguer dans le réseau" class="md-nav__link">
+      Naviguer dans le réseau
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../utilisation/selection-entites/" title="Sélectionner une entité" class="md-nav__link">
+      Sélectionner une entité
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../utilisation/trier-entites/" title="Trier les entités" class="md-nav__link">
+      Trier les entités
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../faq/" title="FAQ" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../historique-versions/" title="Historique" class="md-nav__link">
+      Historique
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      Développement
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Développement" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Développement
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
+    
+    <label class="md-nav__link" for="nav-6-1">
+      Architecture
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Architecture" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Architecture
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../architecture-code-source/" title="Code source" class="md-nav__link">
+      Code source
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bibliotheques/" title="Bibliothèques" class="md-nav__link">
+      Bibliothèques
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" title="Téléchargement et installation" class="md-nav__link">
+      Téléchargement et installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Inscrire données
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Inscrire données" class="md-nav__link md-nav__link--active">
+      Inscrire données
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modele-des-donnees" class="md-nav__link">
+    Modèle des données
+  </a>
+  
+    <nav class="md-nav" aria-label="Modèle des données">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#format-des-donnees" class="md-nav__link">
+    Format des données
+  </a>
+  
+    <nav class="md-nav" aria-label="Format des données">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entites" class="md-nav__link">
+    Entités
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#liens" class="md-nav__link">
+    Liens
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#injection-des-donnees" class="md-nav__link">
+    Injection des données
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saisie-des-donnees" class="md-nav__link">
+    Saisie des données
+  </a>
+  
+    <nav class="md-nav" aria-label="Saisie des données">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outils" class="md-nav__link">
+    Outils
+  </a>
+  
+    <nav class="md-nav" aria-label="Outils">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#airtable" class="md-nav__link">
+    Airtable
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-sheet" class="md-nav__link">
+    Google Sheet
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-4" type="checkbox" id="nav-6-4">
+    
+    <label class="md-nav__link" for="nav-6-4">
+      Modifier code source
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Modifier code source" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Modifier code source
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modifier_code/outils-developpement/" title="Outils développement" class="md-nav__link">
+      Outils développement
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modifier_code/modifier-groupes/" title="Modifier groupes" class="md-nav__link">
+      Modifier groupes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modifier_code/modifier-volet/" title="Modifier volet" class="md-nav__link">
+      Modifier volet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modifier_code/modifier-traduction/" title="Modifier traduction" class="md-nav__link">
+      Modifier traduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modifier_code/modifier-metas/" title="Modifier métadonnées" class="md-nav__link">
+      Modifier métadonnées
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modele-des-donnees" class="md-nav__link">
+    Modèle des données
+  </a>
+  
+    <nav class="md-nav" aria-label="Modèle des données">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#format-des-donnees" class="md-nav__link">
+    Format des données
+  </a>
+  
+    <nav class="md-nav" aria-label="Format des données">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entites" class="md-nav__link">
+    Entités
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#liens" class="md-nav__link">
+    Liens
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#injection-des-donnees" class="md-nav__link">
+    Injection des données
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saisie-des-donnees" class="md-nav__link">
+    Saisie des données
+  </a>
+  
+    <nav class="md-nav" aria-label="Saisie des données">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outils" class="md-nav__link">
+    Outils
+  </a>
+  
+    <nav class="md-nav" aria-label="Outils">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#airtable" class="md-nav__link">
+    Airtable
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-sheet" class="md-nav__link">
+    Google Sheet
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>Inscrire données</h1>
+                
+                <h2 id="modele-des-donnees">Modèle des données<a class="headerlink" href="#modele-des-donnees" title="Permanent link">&para;</a></h2>
+<p>Vous trouverez dans l'<a href="../architecture-code-source/#arborescence-de-fichier">arborescence du répertoire</a> Otletosphère les deux fichiers d'exemple en JSON : <code>entite.json</code> et <code>lien.json</code>. Pour apporter votre propre contenu il vous faut remplacer les valeurs inscrites dans ces fichiers selon les recommandations présentées sur cette page.</p>
+<h3 id="format-des-donnees">Format des données<a class="headerlink" href="#format-des-donnees" title="Permanent link">&para;</a></h3>
+<p>La contrainte d'intégrité des données est forte. <strong>Il est nécessaire de relier les différents objets par leurs identifiants</strong> en prenant soin durant l'inscription des données de respecter le typage et la logique relationnelle au cœur du logiciel.</p>
+<div class="admonition bug">
+<p class="admonition-title">Valeur vide, valeur nulle</p>
+<p>Faites bien attention à ce que les valeurs non remplies soient typée comme <code>null</code> au sein de vos fichiers JSON. Sans cela des champs pourront apparaître vides.</p>
+</div>
+<h4 id="entites">Entités<a class="headerlink" href="#entites" title="Permanent link">&para;</a></h4>
+<p>Il s'agit d'inscrire toutes les entités qui seront intégrées aux vues <em>Réseau</em> et <em>Fiches</em> du site.</p>
+<p>Ci-dessous un modèle de fichier <code>entite.json</code> ainsi que sa table de données décrivant le typage des différentes valeurs.</p>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Fichier JSON</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Paul Otlet&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;relation_otlet&quot;</span><span class="p">:</span> <span class="s2">&quot;otlet&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;prenom&quot;</span><span class="p">:</span> <span class="s2">&quot;Paul&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;nom&quot;</span><span class="p">:</span> <span class="s2">&quot;Otlet&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;titre&quot;</span><span class="p">:</span> <span class="s2">&quot;Fondateur du Mundaneum&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;genre&quot;</span><span class="p">:</span> <span class="s2">&quot;Homme&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;annee_naissance&quot;</span><span class="p">:</span> <span class="mi">1868</span><span class="p">,</span>
+        <span class="nt">&quot;annee_mort&quot;</span><span class="p">:</span> <span class="mi">1944</span><span class="p">,</span>
+        <span class="nt">&quot;pays&quot;</span><span class="p">:</span> <span class="s2">&quot;Belgique&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;pays_en&quot;</span><span class="p">:</span> <span class="s2">&quot;Belgium&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;domaine&quot;</span><span class="p">:</span> <span class="s2">&quot;Bibliographie&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;domaine_en&quot;</span><span class="p">:</span> <span class="s2">&quot;Bibliography&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Paul Otlet est la tête pensante du Mundaneum…&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description_en&quot;</span><span class="p">:</span> <span class="s2">&quot;Paul Otlet is the mind behind the Mundaneum…&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;photo&quot;</span><span class="p">:</span> <span class="s2">&quot;OtletPaul.png&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;lien_wikipedia&quot;</span><span class="p">:</span> <span class="s2">&quot;https://fr.wikipedia.org/wiki/Paul_Otlet&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Table de données</label><div class="tabbed-content">
+<table>
+<thead>
+<tr>
+<th>Clé</th>
+<th>Valeur</th>
+<th>Commentaire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>nombre entier unique supérieur à 0</td>
+<td>identifiant unique</td>
+</tr>
+<tr>
+<td>label</td>
+<td>chaine de caractère</td>
+<td>nom affiché de l'entité</td>
+</tr>
+<tr>
+<td>relation</td>
+<td>chaine de caractère</td>
+<td>nom du groupe de l'entité</td>
+</tr>
+<tr>
+<td>titre</td>
+<td>chaine de caractère</td>
+<td>complément court au nom</td>
+</tr>
+<tr>
+<td>genre</td>
+<td>chaine de caractère</td>
+<td>homme ou femme</td>
+</tr>
+<tr>
+<td>annee_naissance</td>
+<td>nombre entier</td>
+<td>année (ex: 1956)</td>
+</tr>
+<tr>
+<td>annee_mort</td>
+<td>nombre entier</td>
+<td>année (ex: 1956)</td>
+</tr>
+<tr>
+<td>pays</td>
+<td>chaine de caractère</td>
+<td></td>
+</tr>
+<tr>
+<td>pays_en</td>
+<td>chaine de caractère</td>
+<td>traduction anglaise</td>
+</tr>
+<tr>
+<td>domaine</td>
+<td>chaine de caractère</td>
+<td></td>
+</tr>
+<tr>
+<td>domaine_en</td>
+<td>chaine de caractère</td>
+<td>traduction anglaise</td>
+</tr>
+<tr>
+<td>description</td>
+<td>chaine de caractère</td>
+<td></td>
+</tr>
+<tr>
+<td>description_en</td>
+<td>chaine de caractère</td>
+<td>traduction anglaise</td>
+</tr>
+<tr>
+<td>photo</td>
+<td>chemin de fichier</td>
+<td>chemin, nom image et extension</td>
+</tr>
+<tr>
+<td>lien_wikipedia</td>
+<td>adresse URL</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h4 id="liens">Liens<a class="headerlink" href="#liens" title="Permanent link">&para;</a></h4>
+<p>Il s'agit de définir les liens entre les entités créées selon le modèle ci-dessus telles qu'elles apparaîtront dans la vue <em>Réseau</em> et dans la partie <em>Connexions</em> du <a href="../../utilisation/elements-interface/#connexions">volet de visualisation</a>.</p>
+<p>Ci-dessous un modèle de fichier <code>lien.json</code> et sa table de données.</p>
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Fichier JSON</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;to&quot;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="nt">&quot;label&quot;</span> <span class="p">:</span> <span class="s2">&quot;&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="nt">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;to&quot;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="nt">&quot;label&quot;</span> <span class="p">:</span> <span class="s2">&quot;Il travaillent ensemble &lt;b&gt;depuis 10 ans&lt;b&gt;&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Table de données</label><div class="tabbed-content">
+<table>
+<thead>
+<tr>
+<th>Clé</th>
+<th>Valeur</th>
+<th>Commentaire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>nombre entier unique supérieur à 0</td>
+<td>identifiant unique lien</td>
+</tr>
+<tr>
+<td>from</td>
+<td>nombre entier unique supérieur à 0</td>
+<td>identifiant unique entité</td>
+</tr>
+<tr>
+<td>to</td>
+<td>nombre entier unique supérieur à 0</td>
+<td>identifiant unique entité</td>
+</tr>
+<tr>
+<td>label</td>
+<td>HTML</td>
+<td>description avec des balises <code>&lt;b&gt;</code>, <code>&lt;i&gt;</code>, <code>&lt;a&gt;</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2 id="injection-des-donnees">Injection des données<a class="headerlink" href="#injection-des-donnees" title="Permanent link">&para;</a></h2>
+<p>Pour personnaliser l'injection des données (leur intégration dans le logiciel via les fichiers JSON), vous devez modifier le fichier <code>/dist/scripts/fetch.js</code>. Il <a href="../../modifier_code/outils-developpement/">peut être modifié de différentes manière selon l'approche</a> que vous avez choisi pour modifier le code source.</p>
+<p><code class="highlight"><span class="nx">network</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">add</span></code> et <code class="highlight"><span class="nx">network</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">edges</span><span class="p">.</span><span class="nx">add</span></code> sont les deux fonctions permettant d'injecter les données respectivement comme nœuds et liens. Vous trouverez plus d'informations dans <a href="https://github.com/visjs/vis-network#example">cet exemple de la documentation de VisJs</a>. Ces deux fonctions recoivent en paramètre un tableau formé avec la fonction <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/map"><code class="highlight"><span class="nb">Array</span><span class="p">.</span><span class="nx">map</span><span class="p">()</span></code></a> (voir code ci-dessous). Elle permet ainsi de transformer les données des fichiers JSON un objet prévu pour le logiciel, avec entre autres des valeurs prévues pour la <a href="../../modifier_code/modifier-traduction/#traduire-les-données">traduction</a>, mais aussi pour l'affichage dans la <a href="../../utilisation/elements-interface/#reseau">visualisation</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">network</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span>
+    <span class="nx">entites</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">entite</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">entiteObj</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="c1">// entite metas</span>
+            <span class="nx">id</span><span class="o">:</span> <span class="nx">entite</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
+            <span class="nx">label</span><span class="o">:</span> <span class="nx">entite</span><span class="p">.</span><span class="nx">label</span><span class="p">,</span>
+            <span class="nx">title</span><span class="o">:</span> <span class="nx">entite</span><span class="p">.</span><span class="nx">titre</span><span class="p">,</span>
+            <span class="nx">title_fr</span><span class="o">:</span> <span class="nx">entite</span><span class="p">.</span><span class="nx">titre</span><span class="p">,</span>
+            <span class="nx">title_en</span><span class="o">:</span> <span class="nx">entite</span><span class="p">.</span><span class="nx">titre_en</span><span class="p">,</span>
+            <span class="nx">image</span><span class="o">:</span> <span class="s1">&#39;/otletosphere/assets/photos/&#39;</span> <span class="o">+</span> <span class="nx">entite</span><span class="p">.</span><span class="nx">photo</span><span class="p">,</span>
+
+            <span class="c1">// node style</span>
+            <span class="nx">size</span> <span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
+            <span class="nx">margin</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+            <span class="nx">font</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">face</span><span class="o">:</span> <span class="s1">&#39;Open Sans&#39;</span>
+                <span class="p">...</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+
+        <span class="k">return</span> <span class="nx">entiteObj</span><span class="p">;</span>
+    <span class="p">})</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="saisie-des-donnees">Saisie des données<a class="headerlink" href="#saisie-des-donnees" title="Permanent link">&para;</a></h2>
+<p>Afin de compléter, éventuellement de manière collaborative, votre base de données avec les nombreuses métadonnées, tout en respectant les contraintes d'intégrité et avec la possibilité d'exporter facilement en JSON, nous vous conseillons de passer par un logiciel type tableur.</p>
+<p>Voici une proposition de <em>workflow</em>, de circulation des données.</p>
+<div class="mermaid">flowchart TD
+    subgraph Entites
+        entite_label
+        entite_id
+        relation
+        prenom
+        nom
+        titre
+        genre
+        annee_naissance
+        annee_mort
+        pays
+        pays_en
+        domaine
+        domaine_en
+        entite_description
+        entite_description_en
+        photo
+        lien_wikipedia
+    end
+
+    subgraph Liens
+        lien_id
+        from
+        to
+        label
+    end
+
+    subgraph Pays
+        pays_label_fr --&gt; pays
+        pays_label_en --&gt; pays_en
+    end
+
+    subgraph Relations
+        relation_label --&gt; relation
+    end
+
+    id --&gt; from
+    id --&gt; to</div>
+
+<h3 id="outils">Outils<a class="headerlink" href="#outils" title="Permanent link">&para;</a></h3>
+<p>Voici quelques outils gratuits, collaboratifs, intégrant des outils faciles à prendre en main et vous permettant de mettre en place un environnement de saisie adéquat comme présenté ci-dessus.</p>
+<h4 id="airtable">Airtable<a class="headerlink" href="#airtable" title="Permanent link">&para;</a></h4>
+<p><a href="https://airtable.com/">Airtable</a> est un outil hybride entre tableur et base de données et pourra au mieux vous aider à assurer la relation entre vos objets entités et liens, tout en gérant les nombreuses métadonnées que vous pourrez facilement normaliser.</p>
+<p>Une fois les différentes tables complétées, vous pouvez <a href="https://support.airtable.com/hc/en-us/articles/360042311734">relier leur contenu</a> afin de faciliter la saisie, mais aussi assurer la relation entre les identifiants.</p>
+<h4 id="google-sheet">Google Sheet<a class="headerlink" href="#google-sheet" title="Permanent link">&para;</a></h4>
+<p>L'outil <a href="https://www.google.fr/intl/fr/sheets/about/">Google Sheet</a> fournit dans Google Drive vous permet de disposer d'un tableur en ligne et d'exporter en JSON grâce à l'extension <em>Export Sheet Data</em>.</p>
+<details class="tips"><summary>Exporter en JSON avec <em>Export Sheet Data</em></summary><p>Installez l'extension Google Sheet depuis l'onglet <em>Modules complémentaires</em>, bouton <em>Télécharger des modules complémentaires</em>.
+Dans le même onglet est désormais affiché l'outil : une fois sur votre feuille <em>Entités</em> ou <em>Liens</em>, cliquez sur <em>Open Sidebar</em> et entrez la configuration suivantes (les paramètres non mentionnés ci-dessous sont sur <em>off</em>, non cochés) :
+<div class="highlight"><pre><span></span><code>Export Format : JSON
+Export Sheet(s) : Current Sheet only
+Include first column : oui
+Export contents as array : oui
+</code></pre></div>
+Les boutons au bas du <em>Sidebar</em> vous permettent de terminer l'opération. Il ne vous reste qu'à intégrer les fichiers au repertoire <code>/data</code> de l'<a href="/architecture code source/#arborescence-de-fichier">arborescence du logiciel</a>.</p>
+</details>
+<p>N'hésitez pas à utiliser l'outil de <a href="https://support.google.com/docs/answer/186103?co=GENIE.Platform%3DDesktop&amp;hl=fr">validation des données</a> en lien avec d'autres feuilles comme <em>Pays</em>, <em>Relations</em> etc. afin de normaliser au maximum la complétion des données, d'éviter les erreurs. Vous pouvez aussi utiliser la <a href="https://support.google.com/docs/answer/3093331?hl=fr">fonction de traduction intégrée</a> à Google Sheet pour vos versions multilingues ou encore la <a href="https://support.google.com/docs/answer/3093318">fonction <code>RECHERCHEV</code></a> pour assurer la correspondance entre vos labels et identifiants uniques.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../installation/" title="Téléchargement et installation" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Précédent
+                </span>
+                Téléchargement et installation
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../modifier_code/outils-developpement/" title="Outils développement" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Suivant
+                </span>
+                Outils développement
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            © HyperOtlet 2020
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copier dans le presse-papier", "clipboard.copied": "Copi\u00e9 dans le presse-papier", "search.config.lang": "fr", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.27c6a5e6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
