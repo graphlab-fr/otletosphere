@@ -1,5 +1,5 @@
 ---
-title: Documentation
+title: Manuel d'utilisation de l'Otletosphère
 author: Guillaume Brioudes
 lang: fr
 date: 2020-02-24
@@ -7,92 +7,99 @@ keywords:
   - visualisation
 ---
 
-L’Otletosphère est un outil de visualisation de relations entre des personnes et institutions autour du protagoniste Paul Otlet. Elle a été conçue et renseignée par l’équipe du [projet de recherche ANR [ANR-17-CE38-0011]](https://hyperotlet.hypotheses.org/). Elle est disponible en français et en anglais. Deux boutons en haut à droite de l’entête permettent de changer de langue.
+Bienvenue sur le manuel d'utilisation de l’Otletosphère, une cartographie relationnelle des personnalités et institutions liées à Paul Otlet. Elle a été conçue par l’équipe du [programme de recherche ANR HyperOtlet](https://hyperotlet.hypotheses.org/).
 
-# Élements de l’interface
+## Les données
 
-Elle dispose deux vues à partir de la même base de données :
+L'Otletosphère est bâtie sur un jeu de données constitué d'entités et de relations. Les entités sont classées de deux manières :
 
-- Le *Réseau*, qui occupe une place centrale sur le site ;
-- Les *Fiches*, ordonnées par ordre alphabétique.
+- par type d'entité : personnes, œuvres, évènements, institutions ;
+- par type de relation avec Paul Otlet : famille, collègues, collaborateurs, opposants, non-classés.
 
-Ces deux sections sont joignables depuis la navigation en haut de page. On y ajoute le panneau *À propos*, une place d’expression libre pour les concepteurs.
+Chaque entité est décrite en fonction de son type par une série de métadonnées, auxquelles s'ajoutent une photographie et un lien vers la page Wikipédia correspondante. Chaque relation est décrite sur la base d'une preuve documentaire.
 
-## Réseau
+## L'interface
 
-Il s’agit de la vue principale où toutes les relations entre les entités sont représentées au sein du graphe, respectivement sous forme de liens et nœuds. Découvrez dans la [section navigation](#naviguer-dans-le-réseau) comment l’utiliser efficacement.
+L'Otletosphère se présente sous la forme d'un site web bilingue comprenant plusieurs sections.
 
-Des groupes de nœuds et liens sont affichés dans différentes couleurs. Ils correspondent aux différents types de relations qu’ont les entités avec Paul Otlet. Il est possible de [trier les entités](#filtrer-laffichage) selon leur relation avec Paul Otlet.
+### Changer de langue
 
-Survoler un nœud permet de le mettre en évidence, ainsi que ses relations. On peut également lire son titre dans l’encadré qui apparaît.
-Survoler un lien permet de le mettre en évidence et de lire la description de la relation dans l’encadré qui apparaît.
+Le site est disponible intégralement en français et en anglais. Cliquez sur les boutons correspondants en haut à droite de la page pour changer de langue.
+
+### Naviguer entre les sections
+
+Le site comporte plusieurs sections :
+
+- « Réseau » correspond à la représentation des données sous forme de réseau interactif ;
+- « Fiches » permet d'accéder aux mêmes données mais sous forme de cartes ordonnées par ordre alphabétique ;
+- « À propos » présente des informations sur le projet et des liens utiles.
+
+Cliquez sur les boutons correspondants en haut de la page pour naviguer entre ces sections.
+
+### Afficher une entité
+
+Sélectionnez une entité dans la section « Réseau » ou dans la section « Fiches » pour afficher les informations lui correspondant dans le panneau latéral situé sur la partie droite de la page.
+
+Cliquez sur le bouton situé sur le bord gauche du panneau latéral pour ouvrir et fermer ce dernier.
+
+Cliquez sur l'illustration (photographie ou icône) affichée au sommet du panneau latéral pour recentrer l'affichage du réseau sur l'entité correspondante.
+
+Cliquez sur le bouton « Permalien » pour copier dans votre presse-papier l'URL de l'entité affichée. Visiter cette URL permet d'afficher directement l'entité en question. Vous pouvez utiliser cette fonctionnalité pour créer un signet vers une fiche ou bien la partager.
+
+Le panneau latéral comporte une section « Connexions » dans laquelle se trouve une liste de liens correspondant aux relations impliquant l'entité affichée. Chaque lien est précédé d'une pastille colorée qui représente le type de relation avec Paul Otlet pour l'entité liée correspondante. Survolez le lien pour afficher une description de la relation. Cliquez sur le lien pour afficher l'entité liée.
+
+::: astuce
+Utilisez ces liens pour naviguer rapidement d'entité en entité, que vous soyiez dans la section « Réseau » ou « Fiches ».
+:::
+
+### Rechercher une entité
+
+Saisissez du texte dans le champ « Rechercher… » pour obtenir des suggestions d'entités dont le nom correspond à votre saisie. Cliquez sur une suggestion pour sélectionner l'entité correspondante.
+
+### Filtrer l'affichage
+
+Cliquez sur les boutons colorés situés en haut de la page pour filtrer l'affichage des entités en fonction de leur type ou de leur relation avec Paul Otlet. Un bouton coché signifie que les entités correspondantes sont affichées ; un bouton décoché signifie qu'elles sont masquées. Ceci affecte la section « Réseau », la section « Fiches » et les suggestions du moteur de recherche.
+
+L’emplacement de ces boutons dépend de la taille de la fenêtre ou de l'écran sur lequel le site est affiché. Lorsque cette taille est réduite, cliquez sur le bouton en forme d'entonnoir situé en haut à gauche du réseau interactif pour les retrouver.
+
+::: astuce
+La cartographie étant organisée autour de Paul Otlet, le nœud correspondant dans le réseau est relié à un très grand nombre d'autres nœuds. Vous pouvez améliorer la lisibilité du réseau en décochant le bouton « Otlet », qui masque uniquement le nœud correspondant à Paul Otlet.
+:::
+
+## Utiliser la section « Réseau »
+
+Cette section représente les données sous la forme d'un réseau interactif. C'est la section principale du site. Chaque nœud correspond à une entité. Les relations entre ces entités sont représentées par les liens entre les nœuds. Les types d'entités et de relations avec Paul Otlet sont représentés par les couleurs. L'ensemble est affiché sur un fond de couleur sombre qui délimite la zone interactive.
+
+### Affichage
+
+Le réseau est dessiné suivant un algorithme qui repose sur la simulation de forces physiques. Par conséquent, les entités n'ont pas de coordonnées prédéfinies, l'orientation du réseau est aléatoire et le dessin change à chaque fois que la page est chargée.
+
+::: astuce
+Le réseau n'est pas figé : utilisez un cliqué-glissé pour déplacer un nœud (maintenez le clic gauche enfoncé sur un nœud et déplacez le curseur) et ainsi modifier dynamiquement l'apparence du réseau.
+:::
+
+### Déplacement
+
+La navigation s’opère sur trois axes : horizontal (haut-bas), vertical (gauche-droite) et profondeur (avant-arrière). Utilisez un cliqué-glissé pour vous déplacer sur les deux premiers axes (maintenez le clic gauche enfoncé sur une zone vide et déplacez le curseur). Utilisez le défilement ou les boutons +/- affichés en bas à gauche du réseau pour vous déplacer d'avant en arrière.
 
 ### Focus
 
-Sélectionner un nœud permet d’[afficher sa description](#volet-de-description) et de conserver un *focus* sur lui : vous allez zoomer sur l’entité et, tant qu’elle est sélectionné, son opacité ne baissera jamais pour mettre en avant une autre. On peut ainsi combiner la mise en évidence de l’entité sélectionnée avec des nœuds proches pour comparer leurs relations.
+Survolez les nœuds et les liens pour les mettre légèrement en évidence (focus éphémère) et afficher une infobulle contenant une courte description de l'entité ou de la relation correspondante.
 
-Pour désélectionner un nœud, il vous faut cliquer sur une zone vide du *Réseau*.
-
-## Fiches
-
-C’est la vue secondaire, centrée sur la description plutôt que les relations. On y retrouve toutes les entités ordonnées alphabétiquement sous forme de cartes, avec leur titre. Une navigation verticale à gauche permet de passer d’une lettre à l’autre.
-
-Cliquer sur l’une des cartes va vous permettre de sélectionner l’entité, d’afficher sa description. Le [volet de description](#volet-de-description) est toujours affiché et ne peut être fermé. Cela aura pour effet parallèle de faire un [*focus*](#focus) sur l’entité, dans le graphe.
-
-## Volet de description
-
-Il apparait sur le côté droit de l’écran. Il peut être ouvert (et fermé) en cliquant sur le bouton fléché ou bien en [sélectionnant une entité](#trouver-une-entité).
-
-Il contient une illustration pour chaque entité, ainsi qu’une description. Ce sont des couples clé-valeur (ex : Pays → Belgique), un paragraphe d’introduction et le lien vers la page Wikipédia attenante. Il contient également une liste de liens vers les relations de l’entité décrite. Au survol sur ces liens s’affichera une description de la relation. Les pastilles de couleurs correspondent groupes d’entité (relation avec Paul Otlet).
-
-Cliquer sur l’entête du volet de description (illustration, nom…) permet de faire un [*focus*](#focus) sur le nœud au sein du *Réseau*.
+Cliquez sur un nœud pour le mettre fortement en évidence (focus persistant) et afficher les informations correspondantes dans le panneau latéral. Cliquez sur une zone vide du réseau interactif pour désélectionner le nœud.
 
 ::: astuce
-Vous pouvez **partager le volet de description d’une entité** en utilisant le bouton *Permalien* en haut du volet de description. Il va enregistrer dans votre presse papier une adresse à partager. Tout internaute y accédant pourra immédiatement retrouver le volet de description de l’entité. Il pourra aussi cliquer sur son entête pour retrouver l’entité dans le graphe par un [focus](#focus).
+Combinez focus persistant (clic) et éphémère (survol) pour explorer différents groupes d'entités simultanément.
 :::
 
-# Trouver une entité
+## Utiliser la section « Fiches »
 
-Vous pouvez trouver une entité :
+Cette section représente les données sous forme de cartes triées par ordre alphabétique. C'est une section plus secondaire du site, qui fait fonction d'index.
 
-- Dans le graphe, [en vous y déplaçant](#naviguer-dans-le-réseau) ;
-- Via le moteur de recherche, en y inscrivant tout ou partie de son nom ;
-- Via le [volet de description](#volet-de-description) dans lequel sont listées les entités reliée à la dernière sélectionnée.
+Cliquez sur une lettre au niveau du bord gauche de la page pour sauter directement aux entités dont le nom commence par cette lettre.
 
-# Naviguer dans le réseau
-
-## Filtrer l’affichage
-
-Le tri des entités agit tant dans la section *Réseau* que dans la section *Fiches*. La navigation alphabétique des *Fiches* est actualisée en fonction des cartes restantes, ainsi que l’échelle de zoom du *Réseau*.
-
-Les commandes de tri se cumulent.
-
-L’emplacement des commandes de tri dépend de la taille de votre écran.
-
-- Dans l’entête, si votre écran est suffisamment large ;
-- Sinon dans un volet pouvant être déployé au clic sur le bouton *entonnoir* en haut à gauche du *Réseau*.
-
-Chaque commande de tri porte le nom et la couleur du groupe d’entité (relation à Paul Otlet) sur lequel elle agit. Cliquer sur la commande aura pour effet binaire de cocher ou décocher la case qu’elle intègre.
-
-- Case coché : le groupe est visible
-- Case décoché : le groupe est invisible.
+Cliquez sur une carte pour pour afficher les informations lui correspondant dans le panneau latéral situé sur la partie droite de la page. Le panneau latéral ne peut pas être fermé dans cette section.
 
 ::: astuce
-Vous pouvez **améliorer la lisibilité du graphe** en décochant le filtre « Otelt ». Un grand nombre de liens vont alors disparaître pour ne laisser que les relations des entités entre elles. Vous pouvez toujours vous référer aux couleurs pour connaître leur rapport avec le protagoniste.
+En revenant dans la section « Réseau », vous trouverez l'affichage centré sur la dernière entité affichée depuis la section « Fiches », en mode focus persistant.
 :::
-
-## Axes de navigation
-
-La navigation s’opère sur trois axes :
-
-1. haut `<=>` bas, **vertical**
-2. gauche `<=>` droite, **horizontal**
-3. loin `<=>` proche
-
-Pour les deux premiers axes, il vous suffit de maintenir le clic gauche de la souris sur l’espace vide du *Réseau* tout en la déplaçant. En glissant ainsi la souris vers la gauche vous découvrez la zone sur la droite. Il en va de même pour l’axe vertical.
-
-Le troisième axe peut être sollicité avec la molette de votre souris ainsi qu’avec les boutons de zoom `(+)` et dezoom `(-)` affichés en bas à gauche du *Réseau*. Vous êtes limités à une hauteur maximum et minimum.
-
-## Déplacer les nœuds
-
-Vous pouvez déplacer un nœud en maintenant le clic gauche de la souris sur lui tout en la déplaçant. Le nœud va suivre le pointeur de la souris en entraînant avec lui ses liens attachés et les nœuds à leur extrémité. Ainsi vous pouvez interagir avec le *Réseau* pour améliorer votre expérience de lecture.
