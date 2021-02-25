@@ -22,14 +22,9 @@ L'application ne fonctionne que sur un serveur local (gratuit) comme avec [XAMP]
 
 Dépendances liées à la documentation et téléchargement dépôt.
 
-https://www.python.org/
-https://www.mkdocs.org/
-https://squidfunk.github.io/mkdocs-material/
 https://github.com/davisp/ghp-import
 
 ```bash
-pip install mkdocs
-pip install mkdocs-material
 pip install ghp-import
 
 git clone https://github.com/hyperotlet/otletosphere.git
@@ -38,8 +33,6 @@ git clone https://github.com/hyperotlet/otletosphere.git
 Déploiement de la documentation
 
 ```bash
-cd scripts
-sh build.sh
-cd ..
+cd doc
 ghp-import -p build
 ```

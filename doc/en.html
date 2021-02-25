@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" >
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+        <meta name="author" content="Guillaume Brioudes" />
+            <meta name="dcterms.date" content="2020-02-24" />
+            <meta name="keywords" content="visualisation" />
+        <title>Documentation</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    </head>
+
+<body>
+
+            
+        <aside>
+        <nav id="TOC" role="doc-toc">
+                        <ul>
+                        <li><a href="#interface-elements"><span class="toc-section-number">1</span> Interface elements</a>
+                        <ul>
+                        <li><a href="#network"><span class="toc-section-number">1.1</span> Network</a>
+                        <ul>
+                        <li><a href="#focus"><span class="toc-section-number">1.1.1</span> Focus</a></li>
+                        </ul></li>
+                        <li><a href="#records"><span class="toc-section-number">1.2</span> Records</a></li>
+                        <li><a href="#description-panel"><span class="toc-section-number">1.3</span> Description panel</a></li>
+                        </ul></li>
+                        <li><a href="#found-an-entity"><span class="toc-section-number">2</span> Found an entity</a></li>
+                        <li><a href="#navigate-in-the-network"><span class="toc-section-number">3</span> Navigate in the network</a>
+                        <ul>
+                        <li><a href="#filter-the-display"><span class="toc-section-number">3.1</span> Filter the display</a></li>
+                        <li><a href="#navigation-axes"><span class="toc-section-number">3.2</span> Navigation axes</a></li>
+                        <li><a href="#moving-the-nodes"><span class="toc-section-number">3.3</span> Moving the nodes</a></li>
+                        </ul></li>
+                        </ul>
+        </nav>
+    </aside>
+    
+    <main>
+        <h1 class="title">Documentation</h1>
+
+        <p>The Otletosphere is a tool for visualising relationships between people and institutions around the protagonist Paul Otlet. It was designed and developed by the (ANR research project [ANR-17-CE38-0011]) [https://hyperotlet.hypotheses.org/]. It is available in French and English. Two buttons at the top right of the header allow you to change language.</p>
+        <h1 data-number="1" id="interface-elements"><span class="header-section-number">1</span> Interface elements</h1>
+        <p>It has two views from the same database:</p>
+        <ul>
+        <li>The <em>Network</em>, which occupies a central place on the site;</li>
+        <li>The <em>Fiches</em>, arranged in alphabetical order.</li>
+        </ul>
+        <p>These two sections can be reached from the navigation at the top of the page. The <em>About</em> panel is added, a place for designers to express themselves freely.</p>
+        <h2 data-number="1.1" id="network"><span class="header-section-number">1.1</span> Network</h2>
+        <p>This is the main view where all relationships between entities are represented in the graph, respectively as links and nodes. Find out in the <a href="#navigate-in-the-network">navigation section</a> how to use it efficiently.</p>
+        <p>Groups of nodes and links are displayed in different colours. They correspond to the different types of relationships that entities have with Paul Otlet. It is possible to <a href="#filter-the-display">sort entities</a> according to their relationship with Paul Otlet.</p>
+        <p>Hovering over a node highlights it and its relationships. You can also read its title in the box that appears. Hovering over a link highlights it and reads the description of the relationship in the box that appears.</p>
+        <p>Translated with www.DeepL.com/Translator (free version)</p>
+        <h3 data-number="1.1.1" id="focus"><span class="header-section-number">1.1.1</span> Focus</h3>
+        <p>Selecting a node allows you to <a href="#description-panel">display its description</a> and keep a <em>focus</em> on it: you will zoom in on the entity and, as long as it is selected, its opacity will never drop to highlight another one. You can thus combine highlighting the selected entity with close nodes to compare their relationships.</p>
+        <p>To deselect a node, you must click on an empty area of the <em>Network</em>.</p>
+        <h2 data-number="1.2" id="records"><span class="header-section-number">1.2</span> Records</h2>
+        <p>This is the sub-view, focused on description rather than relationships. It shows all the entities arranged alphabetically in the form of maps, with their titles. Vertical navigation on the left allows you to move from one letter to another.</p>
+        <p>Clicking on one of the maps will allow you to select the entity and display its description. The <a href="#description-panel">description panel</a> is always displayed and cannot be closed. This will have the parallel effect of making a <a href="#focus"><em>focus</em></a> on the entity in the graph.</p>
+        <h2 data-number="1.3" id="description-panel"><span class="header-section-number">1.3</span> Description panel</h2>
+        <p>It appears on the right side of the screen. It can be opened (and closed) by clicking on the arrow button or by <a href="#found-an-entity">selecting an entity</a>.</p>
+        <p>It contains an illustration for each entity, as well as a description. These are key-value pairs (e.g. Country → Belgium), an introductory paragraph and the link to the adjoining Wikipedia page. It also contains a list of links to the relationships of the described entity. When hovering over these links a description of the relationship will be displayed. The coloured dots correspond to entity groups (relationship with Paul Otlet).</p>
+        <p>Clicking on the header of the description pane (illustration, name…) allows to make a <a href="#focus"><em>focus</em></a> on the node within the <em>Network</em>.</p>
+        <div class="astuce">
+        <p>You can <strong>share the description pane of an entity</strong> by using the <em>Permalink</em> button at the top of the description pane. It will save an address to share in your clipboard. Any Internet user accessing it will immediately be able to find the entity’s description pane. They can also click on their header to find the entity in the graph with a <a href="#focus">focus</a>.</p>
+        </div>
+        <h1 data-number="2" id="found-an-entity"><span class="header-section-number">2</span> Found an entity</h1>
+        <p>You can find an entity :</p>
+        <ul>
+        <li>In the graph, <a href="#navigate-in-the-network">by moving around</a> ;</li>
+        <li>Via the search engine, by entering all or part of its name;</li>
+        <li>Via the <a href="#description-panel">description pane</a> in which the entities related to the last selected one are listed.</li>
+        </ul>
+        <h1 data-number="3" id="navigate-in-the-network"><span class="header-section-number">3</span> Navigate in the network</h1>
+        <h2 data-number="3.1" id="filter-the-display"><span class="header-section-number">3.1</span> Filter the display</h2>
+        <p>The sorting of the entities acts in both the <em>Network</em> and <em>Records</em> sections. The alphabetical navigation of the <em>Maps</em> is updated according to the remaining maps, as well as the zoom scale of the <em>Network</em>.</p>
+        <p>Sorting commands are cumulative.</p>
+        <p>The location of the sort commands depends on the size of your screen.</p>
+        <ul>
+        <li>In the header, if your screen is large enough ;</li>
+        <li>Otherwise in a pane that can be opened by clicking on the <em>funnel</em> button at the top left of the <em>Network</em>.</li>
+        </ul>
+        <p>Each sort command bears the name and colour of the entity group (relation to Paul Otlet) on which it acts. Clicking on the command will have the binary effect of checking or unchecking the box it integrates.</p>
+        <ul>
+        <li>Checked box: the group is visible</li>
+        <li>Unchecked box: the group is invisible.</li>
+        </ul>
+        <div class="astuce">
+        <p>You can <strong>improve the readability of the graph</strong> by unchecking the “Otelt” filter. A large number of links will then disappear, leaving only the relationships between entities. You can always refer to the colours to see how they relate to the protagonist.</p>
+        </div>
+        <h2 data-number="3.2" id="navigation-axes"><span class="header-section-number">3.2</span> Navigation axes</h2>
+        <p>Navigation is based on three axes:</p>
+        <ol type="1">
+        <li>up <code>&lt;=&gt;</code> down, <strong>vertical</strong></li>
+        <li>left <code>&lt;=&gt;</code> right, <strong>horizontal</strong></li>
+        <li>far <code>&lt;=&gt;</code> near</li>
+        </ol>
+        <p>For the first two axes, simply hold the left mouse click on the empty space in the <em>Network</em> while moving it. By dragging the mouse to the left you will discover the area on the right. The same applies to the vertical axis.</p>
+        <p>The third axis can be activated with the mouse wheel and the zoom <code>(+)</code> and dezoom <code>(-)</code> buttons at the bottom left of the <em>Network</em>. You are limited to a maximum and minimum height.</p>
+        <h2 data-number="3.3" id="moving-the-nodes"><span class="header-section-number">3.3</span> Moving the nodes</h2>
+        <p>You can move a node by holding the left mouse click on it while moving it. The node will follow the mouse pointer, dragging with it its attached links and the nodes at their ends. This way you can interact with the <em>Network</em> to improve your reading experience.</p>
+    </main>
+
+    
+    
+</body>
+
+</html>
