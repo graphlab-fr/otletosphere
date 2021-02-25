@@ -33,5 +33,8 @@ git clone https://github.com/hyperotlet/otletosphere.git
 Déploiement de la documentation
 
 ```bash
-ghp-import -p build
+cd doc
+sh pandoc-build.sh
+cd ..
+ghp-import -p doc
 ```
