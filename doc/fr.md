@@ -14,12 +14,12 @@ Bienvenue sur le manuel d'utilisation de l’[Otletosphère](http://hyperotlet.h
 
 L'Otletosphère est bâtie sur un jeu de données constitué d'entités et de relations. Les entités sont classées de deux manières :
 
-- Le *Réseau*, qui occupe une place centrale sur le site ;
-- Les *Fiches*, ordonnées par ordre alphabétique.
+- par type d'entité : personnes, œuvres, évènements, institutions ;
+- par type de relation avec Paul Otlet : famille, collègues, collaborateurs, opposants, non-classés.
 
-Ces deux sections sont joignables depuis la navigation en haut de page. On y ajoute le panneau *À propos*, une place d’expression libre pour les concepteurs.
+Chaque entité est décrite en fonction de son type par une série de métadonnées, auxquelles s'ajoutent une photographie et un lien vers la page Wikipédia correspondante. Chaque relation est décrite sur la base d'une preuve documentaire.
 
-## Réseau
+# L'interface
 
 L'Otletosphère se présente sous la forme d'un site web bilingue comprenant plusieurs sections.
 
