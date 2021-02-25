@@ -1,0 +1,106 @@
+* {	box-sizing: border-box; }
+
+:root {
+	--font: sans-serif;
+	--accent-color: #c9c9fa;
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.6rem;
+	font-family: var(--font);
+}
+
+p { line-height: 120%; }
+
+aside {
+	background: #eeeeee;
+	position: fixed;
+	height: 100%;
+	left: 0;
+	top: 0;
+	width: 250px;
+}
+
+main {
+	position: relative;
+	margin-left: 300px;
+	padding: 1rem;
+	max-width: 800px;
+}
+
+@media (max-width: 700px) {
+	aside { display: none; }
+	main { margin-left: unset; }
+}
+
+nav {
+	overflow: auto;
+}
+
+nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav ul:not(nav ul:first-child) {
+	padding-left: 3rem;
+}
+
+nav a {
+	display: block;
+	padding: 0.5rem 0 0.5rem 0.9rem;
+	margin: 0.2rem 0;
+	color: inherit;
+}
+
+nav a:hover {
+	background: var(--accent-color);
+}
+
+img {
+	width: 100%;
+}
+
+code {
+	display: inline-block;
+}
+
+main h1.title {
+	text-align: center;
+	font-size: 5rem;
+	margin-bottom: 5rem;
+}
+
+.astuce {
+	position: relative;
+	background: rgb(201, 201, 250);
+	padding: 30px 10px 3px 10px;
+	border-radius: 5px;
+}
+
+.astuce::before {
+	position: absolute;
+	content: 'astuce';
+	top: 5px;
+	left: 5px;
+	font-size: 12px;
+	font-family: monospace;
+}
+
+ul.langagues {
+	list-style: none;
+}
+
+ul.langagues a {
+	display: block;
+	background: rgb(241, 241, 241);
+	padding: 2rem;
+	margin: 0.2rem 0;
+	text-decoration: none;
+}
+
+ul.langagues a:hover {
+	background: #ccc;
+}

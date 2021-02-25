@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr" >
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+        <meta name="author" content="Guillaume Brioudes" />
+            <meta name="dcterms.date" content="2020-02-24" />
+            <meta name="keywords" content="visualisation" />
+        <title>Documentation</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    </head>
+
+<body>
+
+            
+        <aside>
+        <nav id="TOC" role="doc-toc">
+                        <ul>
+                        <li><a href="#élements-de-linterface"><span class="toc-section-number">1</span> Élements de l’interface</a>
+                        <ul>
+                        <li><a href="#réseau"><span class="toc-section-number">1.1</span> Réseau</a>
+                        <ul>
+                        <li><a href="#focus"><span class="toc-section-number">1.1.1</span> Focus</a></li>
+                        </ul></li>
+                        <li><a href="#fiches"><span class="toc-section-number">1.2</span> Fiches</a></li>
+                        <li><a href="#volet-de-description"><span class="toc-section-number">1.3</span> Volet de description</a></li>
+                        </ul></li>
+                        <li><a href="#trouver-une-entité"><span class="toc-section-number">2</span> Trouver une entité</a></li>
+                        <li><a href="#naviguer-dans-le-réseau"><span class="toc-section-number">3</span> Naviguer dans le réseau</a>
+                        <ul>
+                        <li><a href="#filtrer-laffichage"><span class="toc-section-number">3.1</span> Filtrer l’affichage</a></li>
+                        <li><a href="#axes-de-navigation"><span class="toc-section-number">3.2</span> Axes de navigation</a></li>
+                        <li><a href="#déplacer-les-nœuds"><span class="toc-section-number">3.3</span> Déplacer les nœuds</a></li>
+                        </ul></li>
+                        </ul>
+        </nav>
+    </aside>
+    
+    <main>
+        <h1 class="title">Documentation</h1>
+
+        <p>L’Otletosphère est un outil de visualisation de relations entre des personnes et institutions autour du protagoniste Paul Otlet. Elle a été conçue et renseignée par l’équipe du <a href="https://hyperotlet.hypotheses.org/">projet de recherche ANR [ANR-17-CE38-0011]</a>. Elle est disponible en français et en anglais. Deux boutons en haut à droite de l’entête permettent de changer de langue.</p>
+        <h1 data-number="1" id="élements-de-linterface"><span class="header-section-number">1</span> Élements de l’interface</h1>
+        <p>Elle dispose deux vues à partir de la même base de données :</p>
+        <ul>
+        <li>Le <em>Réseau</em>, qui occupe une place centrale sur le site ;</li>
+        <li>Les <em>Fiches</em>, ordonnées par ordre alphabétique.</li>
+        </ul>
+        <p>Ces deux sections sont joignables depuis la navigation en haut de page. On y ajoute le panneau <em>À propos</em>, une place d’expression libre pour les concepteurs.</p>
+        <h2 data-number="1.1" id="réseau"><span class="header-section-number">1.1</span> Réseau</h2>
+        <p>Il s’agit de la vue principale où toutes les relations entre les entités sont représentées au sein du graphe, respectivement sous forme de liens et nœuds. Découvrez dans la <a href="#naviguer-dans-le-réseau">section navigation</a> comment l’utiliser efficacement.</p>
+        <p>Des groupes de nœuds et liens sont affichés dans différentes couleurs. Ils correspondent aux différents types de relations qu’ont les entités avec Paul Otlet. Il est possible de <a href="#filtrer-laffichage">trier les entités</a> selon leur relation avec Paul Otlet.</p>
+        <p>Survoler un nœud permet de le mettre en évidence, ainsi que ses relations. On peut également lire son titre dans l’encadré qui apparaît. Survoler un lien permet de le mettre en évidence et de lire la description de la relation dans l’encadré qui apparaît.</p>
+        <h3 data-number="1.1.1" id="focus"><span class="header-section-number">1.1.1</span> Focus</h3>
+        <p>Sélectionner un nœud permet d’<a href="#volet-de-description">afficher sa description</a> et de conserver un <em>focus</em> sur lui : vous allez zoomer sur l’entité et, tant qu’elle est sélectionné, son opacité ne baissera jamais pour mettre en avant une autre. On peut ainsi combiner la mise en évidence de l’entité sélectionnée avec des nœuds proches pour comparer leurs relations.</p>
+        <p>Pour désélectionner un nœud, il vous faut cliquer sur une zone vide du <em>Réseau</em>.</p>
+        <h2 data-number="1.2" id="fiches"><span class="header-section-number">1.2</span> Fiches</h2>
+        <p>C’est la vue secondaire, centrée sur la description plutôt que les relations. On y retrouve toutes les entités ordonnées alphabétiquement sous forme de cartes, avec leur titre. Une navigation verticale à gauche permet de passer d’une lettre à l’autre.</p>
+        <p>Cliquer sur l’une des cartes va vous permettre de sélectionner l’entité, d’afficher sa description. Le <a href="#volet-de-description">volet de description</a> est toujours affiché et ne peut être fermé. Cela aura pour effet parallèle de faire un <a href="#focus"><em>focus</em></a> sur l’entité, dans le graphe.</p>
+        <h2 data-number="1.3" id="volet-de-description"><span class="header-section-number">1.3</span> Volet de description</h2>
+        <p>Il apparait sur le côté droit de l’écran. Il peut être ouvert (et fermé) en cliquant sur le bouton fléché ou bien en <a href="#trouver-une-entité">sélectionnant une entité</a>.</p>
+        <p>Il contient une illustration pour chaque entité, ainsi qu’une description. Ce sont des couples clé-valeur (ex : Pays → Belgique), un paragraphe d’introduction et le lien vers la page Wikipédia attenante. Il contient également une liste de liens vers les relations de l’entité décrite. Au survol sur ces liens s’affichera une description de la relation. Les pastilles de couleurs correspondent groupes d’entité (relation avec Paul Otlet).</p>
+        <p>Cliquer sur l’entête du volet de description (illustration, nom…) permet de faire un <a href="#focus"><em>focus</em></a> sur le nœud au sein du <em>Réseau</em>.</p>
+        <div class="astuce">
+        <p>Vous pouvez <strong>partager le volet de description d’une entité</strong> en utilisant le bouton <em>Permalien</em> en haut du volet de description. Il va enregistrer dans votre presse papier une adresse à partager. Tout internaute y accédant pourra immédiatement retrouver le volet de description de l’entité. Il pourra aussi cliquer sur son entête pour retrouver l’entité dans le graphe par un <a href="#focus">focus</a>.</p>
+        </div>
+        <h1 data-number="2" id="trouver-une-entité"><span class="header-section-number">2</span> Trouver une entité</h1>
+        <p>Vous pouvez trouver une entité :</p>
+        <ul>
+        <li>Dans le graphe, <a href="#naviguer-dans-le-réseau">en vous y déplaçant</a> ;</li>
+        <li>Via le moteur de recherche, en y inscrivant tout ou partie de son nom ;</li>
+        <li>Via le <a href="#volet-de-description">volet de description</a> dans lequel sont listées les entités reliée à la dernière sélectionnée.</li>
+        </ul>
+        <h1 data-number="3" id="naviguer-dans-le-réseau"><span class="header-section-number">3</span> Naviguer dans le réseau</h1>
+        <h2 data-number="3.1" id="filtrer-laffichage"><span class="header-section-number">3.1</span> Filtrer l’affichage</h2>
+        <p>Le tri des entités agit tant dans la section <em>Réseau</em> que dans la section <em>Fiches</em>. La navigation alphabétique des <em>Fiches</em> est actualisée en fonction des cartes restantes, ainsi que l’échelle de zoom du <em>Réseau</em>.</p>
+        <p>Les commandes de tri se cumulent.</p>
+        <p>L’emplacement des commandes de tri dépend de la taille de votre écran.</p>
+        <ul>
+        <li>Dans l’entête, si votre écran est suffisamment large ;</li>
+        <li>Sinon dans un volet pouvant être déployé au clic sur le bouton <em>entonnoir</em> en haut à gauche du <em>Réseau</em>.</li>
+        </ul>
+        <p>Chaque commande de tri porte le nom et la couleur du groupe d’entité (relation à Paul Otlet) sur lequel elle agit. Cliquer sur la commande aura pour effet binaire de cocher ou décocher la case qu’elle intègre.</p>
+        <ul>
+        <li>Case coché : le groupe est visible</li>
+        <li>Case décoché : le groupe est invisible.</li>
+        </ul>
+        <div class="astuce">
+        <p>Vous pouvez <strong>améliorer la lisibilité du graphe</strong> en décochant le filtre « Otelt ». Un grand nombre de liens vont alors disparaître pour ne laisser que les relations des entités entre elles. Vous pouvez toujours vous référer aux couleurs pour connaître leur rapport avec le protagoniste.</p>
+        </div>
+        <h2 data-number="3.2" id="axes-de-navigation"><span class="header-section-number">3.2</span> Axes de navigation</h2>
+        <p>La navigation s’opère sur trois axes :</p>
+        <ol type="1">
+        <li>haut <code>&lt;=&gt;</code> bas, <strong>vertical</strong></li>
+        <li>gauche <code>&lt;=&gt;</code> droite, <strong>horizontal</strong></li>
+        <li>loin <code>&lt;=&gt;</code> proche</li>
+        </ol>
+        <p>Pour les deux premiers axes, il vous suffit de maintenir le clic gauche de la souris sur l’espace vide du <em>Réseau</em> tout en la déplaçant. En glissant ainsi la souris vers la gauche vous découvrez la zone sur la droite. Il en va de même pour l’axe vertical.</p>
+        <p>Le troisième axe peut être sollicité avec la molette de votre souris ainsi qu’avec les boutons de zoom <code>(+)</code> et dezoom <code>(-)</code> affichés en bas à gauche du <em>Réseau</em>. Vous êtes limités à une hauteur maximum et minimum.</p>
+        <h2 data-number="3.3" id="déplacer-les-nœuds"><span class="header-section-number">3.3</span> Déplacer les nœuds</h2>
+        <p>Vous pouvez déplacer un nœud en maintenant le clic gauche de la souris sur lui tout en la déplaçant. Le nœud va suivre le pointeur de la souris en entraînant avec lui ses liens attachés et les nœuds à leur extrémité. Ainsi vous pouvez interagir avec le <em>Réseau</em> pour améliorer votre expérience de lecture.</p>
+    </main>
+
+    
+    
+</body>
+
+</html>
