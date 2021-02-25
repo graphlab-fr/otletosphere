@@ -1,100 +1,106 @@
 ---
-title: Documentation
+title: Otletosphere User Manual
 author: Guillaume Brioudes
 lang: en
 date: 2020-02-24
 keywords:
   - visualisation
+toc-title: Contents
 ---
 
-The Otletosphere is a tool for visualising relationships between people and institutions around the protagonist Paul Otlet. It was designed and developed by the (ANR research project [ANR-17-CE38-0011]) [https://hyperotlet.hypotheses.org/]. It is available in French and English. Two buttons at the top right of the header allow you to change language.
+Welcome to the user manual of the [Otletosphere](http://hyperotlet.huma-num.fr/otletosphere/), a relational map of personalities and institutions linked to Paul Otlet, designed by ANR research programme [HyperOtlet](https://hyperotlet.hypotheses.org/).
 
-# Interface elements
+# About the data
 
-It has two views from the same database:
+The Otletosphere is built on a dataset of entities and relationships. The entities are classified in two ways:
 
-- The *Network*, which occupies a central place on the site;
-- The *Fiches*, arranged in alphabetical order.
+- by type of entity: persons, works, events, institutions;
+- by type of relationship with Paul Otlet: family, colleagues, collaborators, opponents, unclassified.
 
-These two sections can be reached from the navigation at the top of the page. The *About* panel is added, a place for designers to express themselves freely.
+Each entity is described using metadata (which depend on its type), a photograph or an icon, and a link to the corresponding Wikipedia page. Each relationship is described on the basis of documentary evidence.
 
-## Network
+# Interface
 
-This is the main view where all relationships between entities are represented in the graph, respectively as links and nodes. Find out in the [navigation section](#navigate-in-the-network) how to use it efficiently.
+The Otletosphere is a bilingual website organized in sections.
 
-Groups of nodes and links are displayed in different colours. They correspond to the different types of relationships that entities have with Paul Otlet. It is possible to [sort entities](#filter-the-display) according to their relationship with Paul Otlet.
+## Languages
 
-Hovering over a node highlights it and its relationships. You can also read its title in the box that appears.
-Hovering over a link highlights it and reads the description of the relationship in the box that appears.
+The website is fully available in French and English. Click on the corresponding buttons at the top right of the page to switch between languages.
 
-Translated with www.DeepL.com/Translator (free version)
+## Sections
 
-### Focus
+The website is organized in sections:
 
-Selecting a node allows you to [display its description](#description-panel) and keep a *focus* on it: you will zoom in on the entity and, as long as it is selected, its opacity will never drop to highlight another one. You can thus combine highlighting the selected entity with close nodes to compare their relationships.
+- “Network” presents the data as an interactive network;
+- “Records” presents the same data but in the shape of cards, sorted in alphabetical order;
+- “About” presents some information on the project and a few useful links.
 
-To deselect a node, you must click on an empty area of the *Network*.
+Click on the corresponding buttons at the top of the page to navigate between these sections.
 
-## Records
+## Side panel
 
-This is the sub-view, focused on description rather than relationships. It shows all the entities arranged alphabetically in the form of maps, with their titles. Vertical navigation on the left allows you to move from one letter to another.
+Select an entity in the “Network” section or in the “Records” section to display the information about it in the right-side panel.
 
-Clicking on one of the maps will allow you to select the entity and display its description. The [description panel](#description-panel) is always displayed and cannot be closed. This will have the parallel effect of making a [*focus*](#focus) on the entity in the graph.
+Click on the button on the left edge of the side panel to open and close it.
 
-## Description panel
+Click on the illustration (photograph or icon) displayed at the top of the side panel to refocus the network display on the corresponding entity.
 
-It appears on the right side of the screen. It can be opened (and closed) by clicking on the arrow button or by [selecting an entity](#found-an-entity).
+Click on the “Permalink” button to copy the URL of the displayed entity to your clipboard. Visiting this URL will load the Otletosphere with the entity in question already in focus. You can use this feature to bookmark a record or share it.
 
-It contains an illustration for each entity, as well as a description. These are key-value pairs (e.g. Country → Belgium), an introductory paragraph and the link to the adjoining Wikipedia page. It also contains a list of links to the relationships of the described entity. When hovering over these links a description of the relationship will be displayed. The coloured dots correspond to entity groups (relationship with Paul Otlet).
+The side panel has a “Connections” section which lists the entity's relationships as links. Each link is preceded by a coloured dot representing the type of relationship with Paul Otlet for the corresponding linked entity. Hover over the link to see a description of the relationship. Click the link to display the related entity.
 
-Clicking on the header of the description pane (illustration, name...) allows to make a [*focus*](#focus) on the node within the *Network*.
-
-::: astuce
-You can **share the description pane of an entity** by using the *Permalink* button at the top of the description pane. It will save an address to share in your clipboard. Any Internet user accessing it will immediately be able to find the entity's description pane. They can also click on their header to find the entity in the graph with a [focus](#focus).
+::: tip
+Use these links to quickly navigate from entity to entity, whether you are in the “Network” or “Cards” section.
 :::
 
-# Found an entity
+## Search
 
-You can find an entity :
+Enter text in the “Search...” field to get suggestions of entities whose name matches your entry. Click on a suggestion to select the corresponding entity.
 
-- In the graph, [by moving around](#navigate-in-the-network) ;
-- Via the search engine, by entering all or part of its name;
-- Via the [description pane](#description-panel) in which the entities related to the last selected one are listed.
+## Filters
 
-# Navigate in the network
+Click on the coloured buttons at the top of the page to filter the display of entities according to their type or their relationship to Paul Otlet. A checked button means that the corresponding entities are displayed; an unchecked button means that they are hidden. This affects the “Network” section, the “Cards” section and the search engine suggestions.
 
-## Filter the display
+The location of these buttons depends on the size of the window or screen on which the site is displayed. When this size is reduced, click on the funnel-shaped button at the top left of the interactive network to find them again.
 
-The sorting of the entities acts in both the *Network* and *Records* sections. The alphabetical navigation of the *Maps* is updated according to the remaining maps, as well as the zoom scale of the *Network*.
-
-Sorting commands are cumulative.
-
-The location of the sort commands depends on the size of your screen.
-
-- In the header, if your screen is large enough ;
-- Otherwise in a pane that can be opened by clicking on the *funnel* button at the top left of the *Network*.
-
-Each sort command bears the name and colour of the entity group (relation to Paul Otlet) on which it acts. Clicking on the command will have the binary effect of checking or unchecking the box it integrates.
-
-- Checked box: the group is visible
-- Unchecked box: the group is invisible.
-
-::: astuce
-You can **improve the readability of the graph** by unchecking the "Otelt" filter. A large number of links will then disappear, leaving only the relationships between entities. You can always refer to the colours to see how they relate to the protagonist.
+::: tip
+As the mapping is organised around Paul Otlet, the corresponding node in the network is linked to a very large number of other nodes. You can improve the readability of the network by unchecking the “Otlet” button, which hides only the node corresponding to Paul Otlet.
 :::
 
-## Navigation axes
+# “Network” section
 
-Navigation is based on three axes:
+In this section, the data is represented as an interactive network. This is the main section of the website. Each node represents an entity. The relationships between these entities are represented by the links between the nodes. The types of entities and relationships with Paul Otlet are signified with colours. The network is displayed on a dark background colour which delimits the interactive area.
 
-1. up `<=>` down, **vertical**
-2. left `<=>` right, **horizontal**
-3. far `<=>` near
+## Display
 
-For the first two axes, simply hold the left mouse click on the empty space in the *Network* while moving it. By dragging the mouse to the left you will discover the area on the right. The same applies to the vertical axis.
+The network is drawn according to an algorithm which simulates physical forces. As a result, the entities have no predefined coordinates, the orientation of the network is random and the drawing changes each time the page is loaded.
 
-The third axis can be activated with the mouse wheel and the zoom `(+)` and dezoom `(-)` buttons at the bottom left of the *Network*. You are limited to a maximum and minimum height.
+::: tip
+This is not a static representation: you can drag nodes around to dynamically change the appearance of the network.
+:::
 
-## Moving the nodes
+## Navigation
 
-You can move a node by holding the left mouse click on it while moving it. The node will follow the mouse pointer, dragging with it its attached links and the nodes at their ends. This way you can interact with the *Network* to improve your reading experience.
+Navigation is based on three axes: horizontal (up-down), vertical (left-right) and depth (front-back). Use drag and drop motions for the first two axes. Scroll or use the +/- buttons displayed at the bottom left of the network to move back and forth.
+
+## Focus
+
+Hover over nodes and links to highlight them slightly (temporary focus) and display a tooltip with a short description of the corresponding entity or relationship.
+
+Click a node to highlight it strongly (persistent focus) and display the corresponding information in the side panel. Click an empty area in the interactive network to deselect the node.
+
+::: tip
+Combine persistent (click) and temporary (hover) focus to explore different groups of entities simultaneously.
+:::
+
+# “Records” section
+
+This section represents the data as cards, sorted in alphabetical order. This is a more secondary section of the website and can be used as an index.
+
+Click on a letter at the left edge of the page to jump directly to the entities whose name begins with that letter.
+
+Click on a card to display the information for the corresponding entity in the right-side panel. The panel cannot be closed when you are in the “Records” section.
+
+::: tip
+When you return to the “Network” section, the display will be focused on the last entity you visited in the “Cards” section.
+:::
