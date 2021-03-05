@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var browserSync = require('browser-sync');
 
 /**
  * -----------------------
@@ -22,24 +21,6 @@ gulp.task('default', function () {
  * -----------------------
  */
 
-// https://www.npmjs.com/package/gulp-sass
-var sass = require('gulp-sass');
-sass.compiler = require('node-sass');
-// https://www.npmjs.com/package/gulp-autoprefixer
-var autoprefixer = require('gulp-autoprefixer');
-
-gulp.task('css', function () {
-    return gulp.src('./dist/sass/**/*.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer({
-            cascade: false
-        }))
-        .pipe(gulp.dest('./assets'))
-        .pipe(browserSync.reload({
-            stream: true
-        }));
-});
-
 // https://www.npmjs.com/package/gulp-concat
 var concat = require('gulp-concat');
 
@@ -47,9 +28,6 @@ gulp.task('js', function () {
     return gulp.src('./dist/scripts/*.js')
         .pipe(concat('main.js'))
         .pipe(gulp.dest('./assets/'))
-        .pipe(browserSync.reload({
-            stream: true
-        }));
 });
 
 /**
@@ -93,10 +71,6 @@ gulp.task('minify', gulp.series('minifyCSS', 'minifyJS'));
  */
 
 gulp.task('watch', function () {
-    gulp.watch('./dist/sass/**/*.scss', gulp.series('css'))
-        .on('change', function (event) {
-            console.log('CSS updated');
-        });
     gulp.watch('./dist/scripts/*.js', gulp.series('js'))
         .on('change', function (event) {
             console.log('JS updated');

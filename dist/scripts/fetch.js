@@ -1,3 +1,11 @@
+/**
+ * ================================================================================================
+ * fetch.js =======================================================================================
+ * ================================================================================================
+ * Extract data from JSON files for activate diplays (graph, board, search engine)
+ */
+
+
 Promise.all([
     fetch('data/entite.json'), // = data[0]
     fetch('data/lien.json') // = data[1]
@@ -17,27 +25,32 @@ Promise.all([
         network.data.nodes.add(
             entites.map(function(entite) {
                 var entiteObj = {
-                    // entite metas
+                    // entite metas, default langage
                     id: entite.id,
                     label: entite.label,
-                    title: (entite.titre || ''),
-                    title_fr: (entite.titre || ''),
-                    title_en: (entite.titre_en || ''),
+                    title: entite.titre,
                     group: entite.relation_otlet,
                     image: './assets/photos/' + entite.photo,
                     genre: entite.genre,
                     annee_naissance: entite.annee_naissance,
-                    annee_mort: entite.annee_mort,
+                    annee_mort: ((!entite.annee_mort) ? undefined : ' - ' + entite.annee_mort),
                     pays: entite.pays,
-                    pays_fr: entite.pays,
-                    pays_en: entite.pays_en,
                     domaine: entite.domaine,
-                    domaine_fr: entite.domaine,
-                    domaine_en: entite.domaine_en,
                     description: entite.description,
-                    description_fr: entite.description,
-                    description_en: entite.description_en,
                     lien_wikipedia: entite.lien_wikipedia,
+                    // translated metas
+                    Fr: {
+                        title: entite.titre,
+                        pays: entite.pays,
+                        domaine: entite.domaine,
+                        description: entite.description
+                    },
+                    En: {
+                        title: entite.titre,
+                        pays: entite.pays_en,
+                        domaine: entite.domaine_en,
+                        description: entite.description_en
+                    },
         
                     // node style
                     size : 30,
@@ -54,10 +67,15 @@ Promise.all([
                         strokeColor: '#000'
                     }
                 };
-            
+
+                /**
+                 * We set a sortName value without the 'de' particle
+                 * sortName value is used on board.js for alphabetical ordering
+                 */
+
                 if (entite.nom) {
                     var splitName = entite.nom.split(' ', 2);
-                    // rejet de la particule "de"
+
                     if (splitName.length == 2 && splitName[0] == 'de') {
                         entiteObj.sortName = splitName[1];
                     } else {
@@ -78,14 +96,17 @@ Promise.all([
                     from: lien.from,
                     to: lien.to,
                     title: lien.label,
-                    title_fr: lien.label,
-                    title_en: lien.label_en
+
+                    Fr: {
+                        title: lien.label
+                    },
+                    En: {
+                        title: lien.label_en
+                    },
                 };
 
-                if (lien.from == 1 || lien.to == 1) {
-                    // si le lien a une relation avec Otlet
-                    lienObj.color = null; }
-                else {
+                if (lien.from !== 1 && lien.to !== 1) {
+                    // if link not about Otlet -> gray color
                     lienObj.color = 'gray'; }
 
                 return lienObj;

@@ -1,3 +1,13 @@
+
+
+/**
+ * ================================================================================================
+ * navigation.js ==================================================================================
+ * ================================================================================================
+ * Display and coordinate three website sections : graph, board & about menu
+ */
+
+
 MicroModal.init();
 document.querySelector('#about-btn').addEventListener('click', () => {
     MicroModal.show('modal-about');
@@ -10,12 +20,12 @@ var navigation = {
         if (movement.currentSection !== undefined) {
             // désactiver la surbrillance du lien vers la précédante section
             document.querySelector('[data-section="' + movement.currentSection + '"]')
-                .classList.remove('navigation__link--active');
+                .classList.remove('active');
         }
 
         // activer la surbrillance du lien vers la nouvelle section
         document.querySelector('[data-section="' + section + '"]')
-            .classList.add('navigation__link--active');
+            .classList.add('active');
     }
 }
 
@@ -44,7 +54,6 @@ var movement = {
 
                 fiche.fixer(true);
                 fiche.canClose(true);
-                // MicroModal.close('modal-about');
                 break;
                 
             case 'fiches':
@@ -53,7 +62,6 @@ var movement = {
                 fiche.fixer(true);
                 fiche.canClose(false);
                 fiche.open();
-                // MicroModal.close('modal-about');
                 break;
         }
     },
