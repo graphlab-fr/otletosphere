@@ -5,7 +5,6 @@ lang: en
 date: 2020-02-24
 keywords:
   - visualisation
-toc-title: Contents
 ---
 
 Welcome to the user manual of the [Otletosphere](http://hyperotlet.huma-num.fr/otletosphere/), a relational map of personalities and institutions linked to Paul Otlet, designed by ANR research programme [HyperOtlet](https://hyperotlet.hypotheses.org/).

@@ -5,7 +5,6 @@ lang: fr
 date: 2020-02-24
 keywords:
   - visualisation
-toc-title: Sommaire
 ---
 
 Bienvenue sur le manuel d'utilisation de l’[Otletosphère](http://hyperotlet.huma-num.fr/otletosphere/), une cartographie relationnelle des personnalités et institutions liées à Paul Otlet conçue par l’équipe du programme de recherche ANR [HyperOtlet](https://hyperotlet.hypotheses.org/).

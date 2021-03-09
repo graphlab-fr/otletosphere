@@ -16,97 +16,98 @@
 
 <body>
 
-            
-        <aside>
+        
+    <div class="container">
+
         <nav id="TOC" role="doc-toc">
-                        <h2 id="toc-title">Contents</h2>
-                        <ul>
-                        <li><a href="#about-the-data"><span class="toc-section-number">1</span> About the data</a></li>
-                        <li><a href="#interface"><span class="toc-section-number">2</span> Interface</a>
-                        <ul>
-                        <li><a href="#languages"><span class="toc-section-number">2.1</span> Languages</a></li>
-                        <li><a href="#sections"><span class="toc-section-number">2.2</span> Sections</a></li>
-                        <li><a href="#side-panel"><span class="toc-section-number">2.3</span> Side panel</a></li>
-                        <li><a href="#search"><span class="toc-section-number">2.4</span> Search</a></li>
-                        <li><a href="#filters"><span class="toc-section-number">2.5</span> Filters</a></li>
-                        </ul></li>
-                        <li><a href="#network-section"><span class="toc-section-number">3</span> “Network” section</a>
-                        <ul>
-                        <li><a href="#display"><span class="toc-section-number">3.1</span> Display</a></li>
-                        <li><a href="#navigation"><span class="toc-section-number">3.2</span> Navigation</a></li>
-                        <li><a href="#focus"><span class="toc-section-number">3.3</span> Focus</a></li>
-                        </ul></li>
-                        <li><a href="#records-section"><span class="toc-section-number">4</span> “Records” section</a></li>
-                        </ul>
-        </nav>
-    </aside>
+    <ul>
+    <li><a href="#about-the-data"><span class="toc-section-number">1</span> About the data</a></li>
+    <li><a href="#interface"><span class="toc-section-number">2</span> Interface</a>
+    <ul>
+    <li><a href="#languages"><span class="toc-section-number">2.1</span> Languages</a></li>
+    <li><a href="#sections"><span class="toc-section-number">2.2</span> Sections</a></li>
+    <li><a href="#side-panel"><span class="toc-section-number">2.3</span> Side panel</a></li>
+    <li><a href="#search"><span class="toc-section-number">2.4</span> Search</a></li>
+    <li><a href="#filters"><span class="toc-section-number">2.5</span> Filters</a></li>
+    </ul></li>
+    <li><a href="#network-section"><span class="toc-section-number">3</span> “Network” section</a>
+    <ul>
+    <li><a href="#display"><span class="toc-section-number">3.1</span> Display</a></li>
+    <li><a href="#navigation"><span class="toc-section-number">3.2</span> Navigation</a></li>
+    <li><a href="#focus"><span class="toc-section-number">3.3</span> Focus</a></li>
+    </ul></li>
+    <li><a href="#records-section"><span class="toc-section-number">4</span> “Records” section</a></li>
+    </ul>
+    </nav>
     
     <main>
         <h1 class="title">Otletosphere User Manual</h1>
 
-        <p>Welcome to the user manual of the <a href="http://hyperotlet.huma-num.fr/otletosphere/">Otletosphere</a>, a relational map of personalities and institutions linked to Paul Otlet, designed by ANR research programme <a href="https://hyperotlet.hypotheses.org/">HyperOtlet</a>.</p>
-        <h1 data-number="1" id="about-the-data"><span class="header-section-number">1</span> About the data</h1>
-        <p>The Otletosphere is built on a dataset of entities and relationships. The entities are classified in two ways:</p>
-        <ul>
-        <li>by type of entity: persons, works, events, institutions;</li>
-        <li>by type of relationship with Paul Otlet: family, colleagues, collaborators, opponents, unclassified.</li>
-        </ul>
-        <p>Each entity is described using metadata (which depend on its type), a photograph or an icon, and a link to the corresponding Wikipedia page. Each relationship is described on the basis of documentary evidence.</p>
-        <h1 data-number="2" id="interface"><span class="header-section-number">2</span> Interface</h1>
-        <p>The Otletosphere is a bilingual website organized in sections.</p>
-        <h2 data-number="2.1" id="languages"><span class="header-section-number">2.1</span> Languages</h2>
-        <p>The website is fully available in French and English. Click on the corresponding buttons at the top right of the page to switch between languages.</p>
-        <h2 data-number="2.2" id="sections"><span class="header-section-number">2.2</span> Sections</h2>
-        <p>The website is organized in sections:</p>
-        <ul>
-        <li>“Network” presents the data as an interactive network;</li>
-        <li>“Records” presents the same data but in the shape of cards, sorted in alphabetical order;</li>
-        <li>“About” presents some information on the project and a few useful links.</li>
-        </ul>
-        <p>Click on the corresponding buttons at the top of the page to navigate between these sections.</p>
-        <h2 data-number="2.3" id="side-panel"><span class="header-section-number">2.3</span> Side panel</h2>
-        <p>Select an entity in the “Network” section or in the “Records” section to display the information about it in the right-side panel.</p>
-        <p>Click on the button on the left edge of the side panel to open and close it.</p>
-        <p>Click on the illustration (photograph or icon) displayed at the top of the side panel to refocus the network display on the corresponding entity.</p>
-        <p>Click on the “Permalink” button to copy the URL of the displayed entity to your clipboard. Visiting this URL will load the Otletosphere with the entity in question already in focus. You can use this feature to bookmark a record or share it.</p>
-        <p>The side panel has a “Connections” section which lists the entity’s relationships as links. Each link is preceded by a coloured dot representing the type of relationship with Paul Otlet for the corresponding linked entity. Hover over the link to see a description of the relationship. Click the link to display the related entity.</p>
-        <div class="tip">
-        <p>Use these links to quickly navigate from entity to entity, whether you are in the “Network” or “Cards” section.</p>
-        </div>
-        <h2 data-number="2.4" id="search"><span class="header-section-number">2.4</span> Search</h2>
-        <p>Enter text in the “Search…” field to get suggestions of entities whose name matches your entry. Click on a suggestion to select the corresponding entity.</p>
-        <h2 data-number="2.5" id="filters"><span class="header-section-number">2.5</span> Filters</h2>
-        <p>Click on the coloured buttons at the top of the page to filter the display of entities according to their type or their relationship to Paul Otlet. A checked button means that the corresponding entities are displayed; an unchecked button means that they are hidden. This affects the “Network” section, the “Cards” section and the search engine suggestions.</p>
-        <p>The location of these buttons depends on the size of the window or screen on which the site is displayed. When this size is reduced, click on the funnel-shaped button at the top left of the interactive network to find them again.</p>
-        <div class="tip">
-        <p>As the mapping is organised around Paul Otlet, the corresponding node in the network is linked to a very large number of other nodes. You can improve the readability of the network by unchecking the “Otlet” button, which hides only the node corresponding to Paul Otlet.</p>
-        </div>
-        <h1 data-number="3" id="network-section"><span class="header-section-number">3</span> “Network” section</h1>
-        <p>In this section, the data is represented as an interactive network. This is the main section of the website. Each node represents an entity. The relationships between these entities are represented by the links between the nodes. The types of entities and relationships with Paul Otlet are signified with colours. The network is displayed on a dark background colour which delimits the interactive area.</p>
-        <h2 data-number="3.1" id="display"><span class="header-section-number">3.1</span> Display</h2>
-        <p>The network is drawn according to an algorithm which simulates physical forces. As a result, the entities have no predefined coordinates, the orientation of the network is random and the drawing changes each time the page is loaded.</p>
-        <div class="tip">
-        <p>This is not a static representation: you can drag nodes around to dynamically change the appearance of the network.</p>
-        </div>
-        <h2 data-number="3.2" id="navigation"><span class="header-section-number">3.2</span> Navigation</h2>
-        <p>Navigation is based on three axes: horizontal (up-down), vertical (left-right) and depth (front-back). Use drag and drop motions for the first two axes. Scroll or use the +/- buttons displayed at the bottom left of the network to move back and forth.</p>
-        <h2 data-number="3.3" id="focus"><span class="header-section-number">3.3</span> Focus</h2>
-        <p>Hover over nodes and links to highlight them slightly (temporary focus) and display a tooltip with a short description of the corresponding entity or relationship.</p>
-        <p>Click a node to highlight it strongly (persistent focus) and display the corresponding information in the side panel. Click an empty area in the interactive network to deselect the node.</p>
-        <div class="tip">
-        <p>Combine persistent (click) and temporary (hover) focus to explore different groups of entities simultaneously.</p>
-        </div>
-        <h1 data-number="4" id="records-section"><span class="header-section-number">4</span> “Records” section</h1>
-        <p>This section represents the data as cards, sorted in alphabetical order. This is a more secondary section of the website and can be used as an index.</p>
-        <p>Click on a letter at the left edge of the page to jump directly to the entities whose name begins with that letter.</p>
-        <p>Click on a card to display the information for the corresponding entity in the right-side panel. The panel cannot be closed when you are in the “Records” section.</p>
-        <div class="tip">
-        <p>When you return to the “Network” section, the display will be focused on the last entity you visited in the “Cards” section.</p>
-        </div>
+<p>Welcome to the user manual of the <a href="http://hyperotlet.huma-num.fr/otletosphere/">Otletosphere</a>, a relational map of personalities and institutions linked to Paul Otlet, designed by ANR research programme <a href="https://hyperotlet.hypotheses.org/">HyperOtlet</a>.</p>
+<h1 data-number="1" id="about-the-data"><span class="header-section-number">1</span> About the data</h1>
+<p>The Otletosphere is built on a dataset of entities and relationships. The entities are classified in two ways:</p>
+<ul>
+<li>by type of entity: persons, works, events, institutions;</li>
+<li>by type of relationship with Paul Otlet: family, colleagues, collaborators, opponents, unclassified.</li>
+</ul>
+<p>Each entity is described using metadata (which depend on its type), a photograph or an icon, and a link to the corresponding Wikipedia page. Each relationship is described on the basis of documentary evidence.</p>
+<h1 data-number="2" id="interface"><span class="header-section-number">2</span> Interface</h1>
+<p>The Otletosphere is a bilingual website organized in sections.</p>
+<h2 data-number="2.1" id="languages"><span class="header-section-number">2.1</span> Languages</h2>
+<p>The website is fully available in French and English. Click on the corresponding buttons at the top right of the page to switch between languages.</p>
+<h2 data-number="2.2" id="sections"><span class="header-section-number">2.2</span> Sections</h2>
+<p>The website is organized in sections:</p>
+<ul>
+<li>“Network” presents the data as an interactive network;</li>
+<li>“Records” presents the same data but in the shape of cards, sorted in alphabetical order;</li>
+<li>“About” presents some information on the project and a few useful links.</li>
+</ul>
+<p>Click on the corresponding buttons at the top of the page to navigate between these sections.</p>
+<h2 data-number="2.3" id="side-panel"><span class="header-section-number">2.3</span> Side panel</h2>
+<p>Select an entity in the “Network” section or in the “Records” section to display the information about it in the right-side panel.</p>
+<p>Click on the button on the left edge of the side panel to open and close it.</p>
+<p>Click on the illustration (photograph or icon) displayed at the top of the side panel to refocus the network display on the corresponding entity.</p>
+<p>Click on the “Permalink” button to copy the URL of the displayed entity to your clipboard. Visiting this URL will load the Otletosphere with the entity in question already in focus. You can use this feature to bookmark a record or share it.</p>
+<p>The side panel has a “Connections” section which lists the entity’s relationships as links. Each link is preceded by a coloured dot representing the type of relationship with Paul Otlet for the corresponding linked entity. Hover over the link to see a description of the relationship. Click the link to display the related entity.</p>
+<div class="tip">
+<p>Use these links to quickly navigate from entity to entity, whether you are in the “Network” or “Cards” section.</p>
+</div>
+<h2 data-number="2.4" id="search"><span class="header-section-number">2.4</span> Search</h2>
+<p>Enter text in the “Search…” field to get suggestions of entities whose name matches your entry. Click on a suggestion to select the corresponding entity.</p>
+<h2 data-number="2.5" id="filters"><span class="header-section-number">2.5</span> Filters</h2>
+<p>Click on the coloured buttons at the top of the page to filter the display of entities according to their type or their relationship to Paul Otlet. A checked button means that the corresponding entities are displayed; an unchecked button means that they are hidden. This affects the “Network” section, the “Cards” section and the search engine suggestions.</p>
+<p>The location of these buttons depends on the size of the window or screen on which the site is displayed. When this size is reduced, click on the funnel-shaped button at the top left of the interactive network to find them again.</p>
+<div class="tip">
+<p>As the mapping is organised around Paul Otlet, the corresponding node in the network is linked to a very large number of other nodes. You can improve the readability of the network by unchecking the “Otlet” button, which hides only the node corresponding to Paul Otlet.</p>
+</div>
+<h1 data-number="3" id="network-section"><span class="header-section-number">3</span> “Network” section</h1>
+<p>In this section, the data is represented as an interactive network. This is the main section of the website. Each node represents an entity. The relationships between these entities are represented by the links between the nodes. The types of entities and relationships with Paul Otlet are signified with colours. The network is displayed on a dark background colour which delimits the interactive area.</p>
+<h2 data-number="3.1" id="display"><span class="header-section-number">3.1</span> Display</h2>
+<p>The network is drawn according to an algorithm which simulates physical forces. As a result, the entities have no predefined coordinates, the orientation of the network is random and the drawing changes each time the page is loaded.</p>
+<div class="tip">
+<p>This is not a static representation: you can drag nodes around to dynamically change the appearance of the network.</p>
+</div>
+<h2 data-number="3.2" id="navigation"><span class="header-section-number">3.2</span> Navigation</h2>
+<p>Navigation is based on three axes: horizontal (up-down), vertical (left-right) and depth (front-back). Use drag and drop motions for the first two axes. Scroll or use the +/- buttons displayed at the bottom left of the network to move back and forth.</p>
+<h2 data-number="3.3" id="focus"><span class="header-section-number">3.3</span> Focus</h2>
+<p>Hover over nodes and links to highlight them slightly (temporary focus) and display a tooltip with a short description of the corresponding entity or relationship.</p>
+<p>Click a node to highlight it strongly (persistent focus) and display the corresponding information in the side panel. Click an empty area in the interactive network to deselect the node.</p>
+<div class="tip">
+<p>Combine persistent (click) and temporary (hover) focus to explore different groups of entities simultaneously.</p>
+</div>
+<h1 data-number="4" id="records-section"><span class="header-section-number">4</span> “Records” section</h1>
+<p>This section represents the data as cards, sorted in alphabetical order. This is a more secondary section of the website and can be used as an index.</p>
+<p>Click on a letter at the left edge of the page to jump directly to the entities whose name begins with that letter.</p>
+<p>Click on a card to display the information for the corresponding entity in the right-side panel. The panel cannot be closed when you are in the “Records” section.</p>
+<div class="tip">
+<p>When you return to the “Network” section, the display will be focused on the last entity you visited in the “Cards” section.</p>
+</div>
     </main>
 
     
-    
+        
+    </div>
+
 </body>
 
 </html>
