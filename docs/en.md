@@ -9,6 +9,8 @@ keywords:
 
 Welcome to the user manual of the [Otletosphere](http://hyperotlet.huma-num.fr/otletosphere/), a relational map of personalities and institutions linked to Paul Otlet, designed by ANR research programme [HyperOtlet](https://hyperotlet.hypotheses.org/).
 
+The Otletosphere is built upon a open source codebase called [Opensphere](https://github.com/hyperotlet/opensphere). You may use it freely to make Otletosphere-like visualizations. For more information, read [the Opensphere's technical documentation](https://hyperotlet.github.io/opensphere/).
+
 # About the data
 
 The Otletosphere is built on a dataset of entities and relationships. The entities are classified in two ways:

@@ -9,6 +9,8 @@ keywords:
 
 Bienvenue sur le manuel d'utilisation de l’[Otletosphère](http://hyperotlet.huma-num.fr/otletosphere/), une cartographie relationnelle des personnalités et institutions liées à Paul Otlet conçue par l’équipe du programme de recherche ANR [HyperOtlet](https://hyperotlet.hypotheses.org/).
 
+L'Otletosphère utilise une base logicielle appelée [Opensphère](https://github.com/hyperotlet/opensphere). Pour connaître le fonctionnement de ce logiciel et le réutiliser afin de produire vos propres visualisations, consultez la [documentation technique de l'Opensphère](https://hyperotlet.github.io/opensphere/).
+
 # Les données
 
 L'Otletosphère est bâtie sur un jeu de données constitué d'entités et de relations. Les entités sont classées de deux manières :
