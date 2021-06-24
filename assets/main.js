@@ -133,10 +133,6 @@ graph.init = function() {
         .enter().append("line")
         .attr("class", (d) => 'l_' + d.type)
         .attr("stroke", function(d) {
-            if (d.source === 1) {
-                const group = graph.nodes.find(node => node.id === d.target).group
-                return chooseColor(group);
-            }
             if (d.target === 1) {
                 const group = graph.nodes.find(node => node.id === d.source).group
                 return chooseColor(group);
@@ -406,31 +402,33 @@ function unlightNodeNetwork() {
  * @returns {string} color
  */
 
-function chooseColor(name, lowerOpacity = false) {
+function chooseColor(name) {
+    let color;
+
     switch (name) {
         case 'collegue':
-            var color = '154, 60, 154'; break;
+            color = '154, 60, 154'; break;
         case 'collaborateur':
-            var color = '97, 172, 97'; break;
+            color = '97, 172, 97'; break;
         case 'opposant':
-            var color = '250, 128, 114'; break;
+            color = '250, 128, 114'; break;
         case 'famille':
-            var color = '102, 179, 222'; break;
+            color = '102, 179, 222'; break;
         case 'otlet':
-            var color = '244, 164, 96'; break;
+            color = '244, 164, 96'; break;
         case 'non-catégorisé':
-            var color = '128,128,128'; break;
+            color = '128,128,128'; break;
         case 'institution':
-            var color = '128,128,128'; break;
+            color = '128,128,128'; break;
         case 'œuvre':
-            var color = '128,128,128'; break;
+            color = '128,128,128'; break;
         case 'évènement':
-            var color = '128,128,128'; break;
+            color = '128,128,128'; break;
         default:
-            var color = '169, 169, 169'; break;
+            color = '169, 169, 169'; break;
     }
-    if (lowerOpacity) { return ['rgba(', color, ', 0.4)'].join(''); }
-    else { return ['rgb(', color, ')'].join(''); }
+
+    return ['rgb(', color, ')'].join('');
 }
 
 /**
