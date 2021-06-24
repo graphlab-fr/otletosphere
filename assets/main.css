@@ -622,6 +622,7 @@ button:focus {
 
 .board {
   position: relative;
+  background-color: white;
 }
 
 .board-wrapper {
@@ -798,4 +799,33 @@ button:focus {
 
 .micromodal-slide[aria-hidden="false"] .modal-overlay {
   animation: mmfadeIn 0.3s cubic-bezier(0, 0, 0.2, 1);
+}
+
+#graph {
+  width: 100%;
+  height: 100%;
+}
+
+g.translucent circle { stroke-opacity: 0.2; fill: transparent; }
+g.translucent image { opacity: 0.2; }
+line.translucent { stroke-opacity: 0.2; }
+line.highlight { stroke-width: 3; }
+text {
+  fill: white;
+  font-family: 'Open Sans';
+}
+
+[title] {
+  position: relative;
+}
+
+.fiche [title]:hover::before {
+  position: absolute;
+  content: attr(title);
+  border-radius: 3px;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  bottom: 100%;
 }

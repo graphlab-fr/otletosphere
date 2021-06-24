@@ -5,10 +5,23 @@
  * Extract data from JSON files for activate diplays (graph, board, search engine)
  */
 
+const graph = {
+    nodes: [],
+    links: [],
+    elts: {},
+    defs: {},
+    pos: {
+        zoom: 1,
+        x: 0,
+        y: 0
+    },
+    selectedNodeId: undefined,
+    svg: d3.select("#graph")
+}
 
 Promise.all([
-    fetch('data/entite.json'), // = data[0]
-    fetch('data/lien.json') // = data[1]
+    fetch('data/entites.json'), // = data[0]
+    fetch('data/liens.json') // = data[1]
 ]).then(function(data) {
     // get data
     const entites = data[0]
@@ -22,98 +35,56 @@ Promise.all([
         const entites = data[0]
         const liens = data[1]
 
-        network.data.nodes.add(
-            entites.map(function(entite) {
-                var entiteObj = {
-                    // entite metas, default langage
-                    id: entite.id,
-                    label: entite.label,
+        graph.nodes = entites.map(function(entite) {
+            return {
+                id: entite.id,
+                label: entite.label,
+                title: entite.titre,
+                group: entite.relation_otlet,
+                image: './assets/images/' + entite.photo,
+                genre: entite.genre,
+                annee_naissance: entite.annee_naissance,
+                annee_mort: ((!entite.annee_mort) ? undefined : ' - ' + entite.annee_mort),
+                pays: entite.pays,
+                domaine: entite.domaine,
+                description: entite.description,
+                lien_wikipedia: entite.lien_wikipedia,
+                // translated metas
+                Fr: {
                     title: entite.titre,
-                    group: entite.relation_otlet,
-                    image: './assets/photos/' + entite.photo,
-                    genre: entite.genre,
-                    annee_naissance: entite.annee_naissance,
-                    annee_mort: ((!entite.annee_mort) ? undefined : ' - ' + entite.annee_mort),
                     pays: entite.pays,
                     domaine: entite.domaine,
-                    description: entite.description,
-                    lien_wikipedia: entite.lien_wikipedia,
-                    // translated metas
-                    Fr: {
-                        title: entite.titre,
-                        pays: entite.pays,
-                        domaine: entite.domaine,
-                        description: entite.description
-                    },
-                    En: {
-                        title: entite.titre,
-                        pays: entite.pays_en,
-                        domaine: entite.domaine_en,
-                        description: entite.description_en
-                    },
-        
-                    // node style
-                    size : 30,
-                    borderWidth: 3,
-                    borderWidthSelected: 60,
-                    margin: 20,
-                    interaction: {hover: true},
-                    hidden: false,
-                    font: {
-                        face: 'Open Sans',
-                        size: 22,
-                        color: '#fff',
-                        strokeWidth: 2,
-                        strokeColor: '#000'
-                    }
-                };
+                    description: entite.description
+                },
+                En: {
+                    title: entite.titre_en,
+                    pays: entite.pays_en,
+                    domaine: entite.domaine_en,
+                    description: entite.description_en
+                },
 
-                /**
-                 * We set a sortName value without the 'de' particle
-                 * sortName value is used on board.js for alphabetical ordering
-                 */
+                sortName: entite.nom || entite.label,
+                hidden: false
+            };
+        });
 
-                if (entite.nom) {
-                    var splitName = entite.nom.split(' ', 2);
+        graph.links = liens.map(function(lien) {
+            return {
+                id: lien.id,
+                source: lien.from,
+                target: lien.to,
+                title: lien.label,
 
-                    if (splitName.length == 2 && splitName[0] == 'de') {
-                        entiteObj.sortName = splitName[1];
-                    } else {
-                        entiteObj.sortName = entite.nom;
-                    }
-                } else {
-                    entiteObj.sortName = entite.label
-                }
+                Fr: {
+                    title: lien.label
+                },
+                En: {
+                    title: lien.label_en
+                },
+            }
+        });
 
-                return entiteObj;
-            })
-        );
-
-        network.data.edges.add(
-            liens.map(function(lien) {
-                var lienObj = {
-                    id: lien.id,
-                    from: lien.from,
-                    to: lien.to,
-                    title: lien.label,
-
-                    Fr: {
-                        title: lien.label
-                    },
-                    En: {
-                        title: lien.label_en
-                    },
-                };
-
-                if (lien.from !== 1 && lien.to !== 1) {
-                    // if link not about Otlet -> gray color
-                    lienObj.color = 'gray'; }
-
-                return lienObj;
-            })
-        );
-
-        network.init();
+        graph.init();
 
     });
 });
@@ -127,157 +98,305 @@ Promise.all([
  * Distribute the data extracted from fetch.js
  */
 
+graph.params = {
+    nodeSize: 12,
+    nodeStrokeSize: 2,
+    force: 800,
+    distanceMax: 400,
+    highlightColor: 'red'
+};
 
-var network = {
-    container: document.querySelector('#network'),
-    data: {
-        nodes: new vis.DataSet(),
-        edges: new vis.DataSet()
-    },
-    options: {
-        physics: {
-            enabled: true,
-            repulsion: {
-                centralGravity: 0.0,
-                springLength: 350,
-                springConstant: 0.01,
-                nodeDistance: 400,
-                damping: 0.09
-            },
-            solver: 'repulsion'
-        },
-        edges: {
-            width: 2,
-            selectionWidth: 6,
-            smooth: {
-                type: 'horizontal',
-                forceDirection: 'horizontal'
+graph.width =+ graph.svg.node().getBoundingClientRect().width;
+graph.height =+ graph.svg.node().getBoundingClientRect().height;
+
+graph.init = function() {
+
+    graph.params.imgSize = graph.params.nodeSize + 10;
+
+    d3.select(window).on("resize", function () {
+        graph.width =+ graph.svg.node().getBoundingClientRect().width;
+        graph.height =+ graph.svg.node().getBoundingClientRect().height;
+        toPosition();
+    });
+
+    graph.simulation = d3.forceSimulation()
+        .force("link", d3.forceLink().id(function(d) { return d.id; }))
+        .force("charge", d3.forceManyBody())
+        .force("center", d3.forceCenter(graph.width / 2, graph.height / 2));
+
+    graph.elts.tip = undefined;
+
+    graph.elts.links = graph.svg.append("g")
+        .attr("class", "links")
+        .selectAll("line")
+        .data(graph.links)
+        .enter().append("line")
+        .attr("class", (d) => 'l_' + d.type)
+        .attr("stroke", function(d) {
+            if (d.source === 1) {
+                const group = graph.nodes.find(node => node.id === d.target).group
+                return chooseColor(group);
             }
-        },
-        nodes: {
-            shape: 'image'
-        },
-        groups: { // massive styling, by group name
-            collegue: {shape: 'circularImage', color: {border: chooseColor('collegue')}},
-            collaborateur: {shape: 'circularImage', color: {border: chooseColor('collaborateur')}},
-            famille: {shape: 'circularImage', color: {border: chooseColor('famille')}},
-            opposant: {shape: 'circularImage', color: {border: chooseColor('opposant')}},
-            otlet: {shape: 'circularImage', color: {border: chooseColor('otlet')}},
-            'non-catégorisé': {shape: 'circularImage', color: {border: chooseColor('non-catégorisé')}},
-            institution: {color: {border: chooseColor('institution')}},
-            œuvre: {color: {border: chooseColor('œuvre')}},
-            évènement: {color: {border: chooseColor('évènement')}}
-        },
-        interaction: {hover:true}
-    },
-    zoom: {
-        max: 1,
-        min: 0.2
-    },
-    selectedNode: undefined,
-    /** diplay graph & activate events, board and search engine */
-    init: function() {
-        
-        // Génération de la visualisation
-        network.visualisation = new vis.Network(network.container,
-            network.data, network.options);
-        
-        // Évents du network
-        network.visualisation.on('selectNode', function(nodeMetasBrutes) {
-            var idNode = nodeMetasBrutes.nodes[0];
-        
-            if (idNode === undefined) { return; }
-            
-            if (network.selectedNode !== undefined && network.selectedNode == idNode) {
-                // si nœud est déjà selectionné
-                return;
-            }
-        
-            switchNode(idNode);
-            historique.actualiser(idNode);
-        });
-        // nodes become transparents if one is hovered by mouse
-        network.visualisation.on('hoverNode', function(params) {
-            var idNodeHovered = params.node;
-        
-            // no effect on hovermouse node
-            var noEffectNodesIds = [idNodeHovered];
-            // and his connections
-            noEffectNodesIds = noEffectNodesIds
-                .concat(network.visualisation.getConnectedNodes(idNodeHovered));
-        
-            if (network.selectedNode !== undefined) {
-                // no effect on the 'selectedNode'
-                noEffectNodesIds.push(network.selectedNode)
-                // and his connections
-                noEffectNodesIds = noEffectNodesIds
-                    .concat(network.visualisation.getConnectedNodes(network.selectedNode));
+            if (d.target === 1) {
+                const group = graph.nodes.find(node => node.id === d.source).group
+                return chooseColor(group);
             }
 
-            network.data.nodes.update(
-                network.data.nodes.map(entite => ({
-                    id: entite.id,
-                    color: chooseColor(entite.group, true),
-                    opacity: 0.4,
-                    font: {
-                        color: 'rgba(255, 255, 255, 0.5)',
-                        strokeColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                } ), {
-                    filter: function(entite) {
-                        return(noEffectNodesIds.includes(entite.id) == false);
-                    }
+            return 'grey';
+        })
+        .attr("title", (d) => d.title)
+        .attr("data-source", (d) => d.source)
+        .attr("data-target", (d) => d.target)
+        .attr("x1", (d) => d.source.x)
+        .attr("y1", (d) => d.source.y)
+        .attr("x2", (d) => d.target.x)
+        .attr("y2", (d) => d.target.y)
+        .on("mouseenter", function (d) {
+
+            if (d.description === '') { return; }
+
+            const coordinates = d3.mouse(this)
+                , x = coordinates[0] + 10
+                , y = coordinates[1] + 10;
+    
+            graph.elts.tip = graph.svg.append("g")
+                .attr("transform", `translate(200,200)`);
+    
+            let rect = graph.elts.tip.append("rect")
+                .style("fill", "white")
+                .style("stroke", "black")
+                .attr("rx", 2)
+                .attr("ry", 2);
+    
+            graph.elts.tip.append("text")
+                .text(function() {
+                    return d.title;
                 })
-            );
-            
-        });
-        // revert the nodes transparency
-        network.visualisation.on('blurNode', function() {
+                .style("fill", "black")
+                .attr('font-size', 17 - graph.pos.zoom * 3)
+                .attr("dy", "1em")
+                .attr("x", 7)
+                .attr("class", "tip_description");
+    
+            const bbox = graph.elts.tip.node().getBBox();
+            rect.attr("width", bbox.width + 20)
+                .attr("height", bbox.height);
+    
+            graph.elts.tip.attr("transform", "translate(" + x + "," + y + ")")
+        })
+        .on("mouseout", function (d) {
+            graph.elts.tip.remove();
+        })
 
-            network.data.nodes.update(
-                network.data.nodes.map(entite => ({
-                        id: entite.id,
-                        color: false,
-                        opacity: 1,
-                        font: {
-                            color: '#fff',
-                            strokeColor: '#000'
-                        }
-                } ))
-            );
+    graph.elts.nodes = graph.svg.append("g")
+        .attr("class", "nodes")
+        .selectAll("g")
+        .data(graph.nodes)
+        .enter().append("g")
+        .attr("data-node", (d) => d.id)
+        .on('click', function(d) {
+            // openRecord(nodeMetas.id);
+            switchNode(d.id);
+            historique.actualiser(d.id);
         });
-        
-        network.visualisation.on('zoom', function(params) {
-        
-            // restrict un-zoom
-            if (params.scale <= network.zoom.min) {
-                network.visualisation.moveTo({
-                    position: { x: 0, y: 0 },
-                    scale: network.zoom.min
-                });
+
+    graph.elts.circles = graph.elts.nodes.append("circle")
+        .attr("r", (d) => graph.params.nodeSize)
+        .style("stroke", (d) => chooseColor(d.group))
+        .attr("stroke-width", graph.params.nodeStrokeSize)
+        .on('mouseenter', hoverNode)
+        .on('mouseout', hoverNodeRemove);
+
+    graph.elts.images = graph.elts.nodes.append("svg:image")
+        .attr("xlink:href",  function(d) { return d.image;})
+        .attr("clip-path", "url(#image-clip-path)")
+        .attr('transform', 'translate(-' + graph.params.imgSize / 2 + ', -' + graph.params.imgSize / 2 + ')')
+        .attr("height", graph.params.imgSize)
+        .attr("width", graph.params.imgSize)
+        .call(d3.drag()
+            .on("start", function(d) {
+                if (!d3.event.active) graph.simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y; })
+            .on("drag", function(d) {
+                d.fx = d3.event.x;
+                d.fy = d3.event.y; })
+            .on("end", function(d) {
+                if (!d3.event.active) graph.simulation.alphaTarget(0.0001);
+                d.fx = null;
+                d.fy = null; })
+        )
+        .on('mouseenter', hoverNode)
+        .on('mouseout', hoverNodeRemove);
+
+    graph.elts.labels = graph.elts.nodes.append("text")
+        .each(function(d) {
+            const words = d.label.split(' ')
+                , max = 25
+                , text = d3.select(this);
+            let label = '';
+
+            for (let i = 0; i < words.length; i++) {
+                // combine words and seperate them by a space caracter into label
+                label += words[i] + ' ';
+
+                // if label (words combination) is longer than max & not the single iteration
+                if (label.length < max && i !== words.length - 1) { continue; }
+
+                text.append("tspan")
+                    .attr('x', 0)
+                    .attr('dy', '1.2em')
+                    .text(label.slice(0, -1)); // remove last space caracter
+
+                label = '';
             }
-        
-            // restrict zoom
-            if (params.scale >= network.zoom.max) {
-                network.visualisation.moveTo({ scale: network.zoom.max }); }
+        })
+        .attr('font-size', 10)
+        .attr('x', 0)
+        .attr('y', (d) => graph.params.nodeSize)
+        .attr('dominant-baseline', 'middle')
+        .attr('text-anchor', 'middle');
+
+    graph.elts.defs = graph.svg.append("defs")
+
+    graph.defs.imageClipPath = graph.elts.defs.append("clipPath")
+        .attr("id", "image-clip-path")
+        .append("circle")
+        .attr("cx", graph.params.imgSize / 2)
+        .attr("cy", graph.params.imgSize / 2)
+        .attr("r", graph.params.imgSize / 2);
+
+    graph.simulation
+        .nodes(graph.nodes)
+        .on("tick", function() {
+            graph.elts.links
+                .attr("x1", function(d) { return d.source.x; })
+                .attr("y1", function(d) { return d.source.y; })
+                .attr("x2", function(d) { return d.target.x; })
+                .attr("y2", function(d) { return d.target.y; });
+
+            const marge = 20;
+
+            graph.elts.nodes
+                .attr("transform", function(d) {
+                    d.x = Math.max(graph.params.nodeSize + marge, Math.min(graph.width - graph.params.nodeSize - marge, d.x));
+                    d.y = Math.max(graph.params.nodeSize + marge, Math.min(graph.height - graph.params.nodeSize - marge, d.y));
+
+                    return "translate(" + d.x + "," + d.y + ")";
+                });
         });
 
-        // activate zoom buttons
-        zoom.btnPlus.addEventListener('click', zoomIn);
-        zoom.btnMoins.addEventListener('click', zoomOut);
-        zoom.btnReinitialiser.addEventListener('click', backToCenterView);
+    graph.simulation
+        .force("link")
+        .links(graph.links);
 
-        board.init(); // activate the alphabetical list display
-        search.input.addEventListener('focus', search.init); // activate the search engine
-        filter.init(); // activate filters
-        
-        // If there is entity id one URL : activate
-        const urlPathnameArray = window.location.pathname.split('/');
-        const nodeId = urlPathnameArray[urlPathnameArray.length -1];
-        if (switchNode(nodeId, false)) {
-            historique.init(nodeId);
-        }
+    graph.simulation
+        .force("center", d3.forceCenter())
+        .force("charge", d3.forceManyBody());
+
+    graph.simulation.force("charge")
+        .strength(-Math.abs(graph.params.force)) // turn force value to negative number
+        .distanceMax(graph.params.distanceMax);
+
+    function toPosition() {
+        graph.simulation.force("center")
+            .x(graph.width * 0.5)
+            .y(graph.height * 0.5);
+
+        graph.simulation
+            .alpha(1).restart();
     }
+
+    toPosition();
+
+    board.init(); // activate the alphabetical list display
+    search.input.addEventListener('focus', search.init); // activate the search engine
+    filter.init(); // activate filters
+    
+    // If there is entity id one URL : activate
+    const urlPathnameArray = window.location.pathname.split('/');
+    let nodeId = urlPathnameArray[urlPathnameArray.length -1];
+    nodeId = Number(nodeId);
+    if (switchNode(nodeId, false)) {
+        historique.init(nodeId);
+    }
+
+    function hoverNode(d) {
+        graph.elts.nodes.classed('translucent', true);
+            graph.elts.links.classed('translucent', true);
+
+            const ntwOfHoveredNode = getNodeNetwork(d.id)
+                , nodeHovered = ntwOfHoveredNode.node
+                , linksHovered = ntwOfHoveredNode.links
+                , connectedNodesHovered = ntwOfHoveredNode.connectedNodes;
+
+            nodeHovered.classed('translucent', false);
+            linksHovered.classed('translucent', false);
+            connectedNodesHovered.classed('translucent', false);
+
+            if (graph.selectedNodeId) {
+                const ntwOfSelectedNode = getNodeNetwork(graph.selectedNodeId)
+                    , nodeSelected = ntwOfSelectedNode.node
+                    , linksSelected = ntwOfSelectedNode.links
+                    , connectedNodesSelected = ntwOfSelectedNode.connectedNodes;
+
+                nodeSelected.classed('translucent', false);
+                linksSelected.classed('translucent', false);
+                connectedNodesSelected.classed('translucent', false);
+            }
+    }
+
+    function hoverNodeRemove(d) {
+        graph.elts.nodes.classed('translucent', false);
+        graph.elts.links.classed('translucent', false);
+    }
+}
+
+/**
+ * Get d3 elts objects : the node, its links and its linked nodes
+ * @param {number} nodeId 
+ * @returns {object} - node, links, connectedNodes
+ */
+
+function getNodeNetwork(nodeId) {
+    const ntw = {
+        node: graph.elts.nodes.filter(node => node.id === nodeId),
+        connectedNodes: []
+    }
+
+    ntw.links = graph.elts.links.filter(function(link) {
+        if (link.source.id === nodeId) {
+            ntw.connectedNodes.push(link.target.id);
+            return true;
+        }
+
+        if (link.target.id === nodeId) {
+            ntw.connectedNodes.push(link.source.id);
+            return true;
+        }
+    });
+    
+    ntw.connectedNodes = graph.elts.nodes.filter(node => ntw.connectedNodes.includes(node.id));
+
+    return ntw;
+}
+
+function highlightNodeNetwork(nodeId) {
+    const ntw = getNodeNetwork(nodeId)
+        , node = ntw.node
+        , links = ntw.links;
+
+    node.select('circle').style("stroke", graph.params.highlightColor);
+    links.classed('highlight', true);
+}
+
+function unlightNodeNetwork() {
+    const ntw = getNodeNetwork(graph.selectedNodeId)
+        , node = ntw.node
+        , links = ntw.links;
+
+    node.select('circle').style("stroke", (d) => chooseColor(d.group));
+    links.classed('highlight', false);
 }
 
 /**
@@ -307,6 +426,8 @@ function chooseColor(name, lowerOpacity = false) {
             var color = '128,128,128'; break;
         case 'évènement':
             var color = '128,128,128'; break;
+        default:
+            var color = '169, 169, 169'; break;
     }
     if (lowerOpacity) { return ['rgba(', color, ', 0.4)'].join(''); }
     else { return ['rgb(', color, ')'].join(''); }
@@ -314,50 +435,43 @@ function chooseColor(name, lowerOpacity = false) {
 
 /**
  * Return the metadatas from a entity
- * @param {number} id - Entity id
+ * @param {number} nodeId - Entity id
  * @returns {object} metadatas of false if malfunction
  */
 
-function getNodeMetas(id) { 
-    var nodeMetas = false;
+function getNodeMetas(nodeId) {
+    const nodeMetas = graph.elts.nodes.filter(node => node.id === nodeId).data()[0];
 
-    network.data.nodes.get({
-
-        filter: function (item) {
-            if (item.id == id) {
-                nodeMetas = item; }
-        }
-    });
+    if (!nodeMetas) { return false; }
 
     return nodeMetas;
 }
 
 /**
  * Return metas from connected nodes
- * @param {number} id - Entity id
- * @returns {array} objects arrau contains metadatas
+ * @param {number} nodeId - Entity id
+ * @returns {array} objects array contains metadatas
  */
 
 function findConnectedNodes(nodeId) {
-    var nodesConnected = network.visualisation.getConnectedNodes(nodeId);
-    var edgesConnected = network.visualisation.getConnectedEdges(nodeId);
-
-    var connectedNodesList = [];
-    for (let i = 0; i < nodesConnected.length; i++) {
-        const id = nodesConnected[i];
-        var nodeMetas = getNodeMetas(id);
-        // get the link description :
-        var nodeLinkTitle = network.data.edges.get(edgesConnected[i]).title;
-        connectedNodesList.push({
-            id: nodeMetas.id,
-            label: nodeMetas.label,
-            relation: nodeMetas.group,
-            title: nodeLinkTitle,
-            hidden: nodeMetas.hidden,
+    return graph.links
+        .filter(link => link.source.id === nodeId || link.target.id === nodeId)
+        .map(function(link) {
+            if (link.source.id === nodeId) {
+                return link.target;
+            } else {
+                return link.source;
+            }
+        })
+        .map(function(link) {
+            return {
+                id: link.id,
+                label: link.label,
+                relation: link.group,
+                title: link.title,
+                hidden: link.hidden
+            };
         });
-    }
-
-    return connectedNodesList;
 }
 
 /**
@@ -371,15 +485,18 @@ function switchNode(nodeId, mustZoom = true) {
 
     var nodeMetas = getNodeMetas(nodeId);
 
-    if (nodeMetas == false) { return false; }
+    if (nodeMetas === false) { return false; }
 
-    network.visualisation.selectNodes([nodeId]);
-    network.selectedNode = Number(nodeId);
+    if (graph.selectedNodeId) { unlightNodeNetwork(); }
+
+    highlightNodeNetwork(nodeId);
+
+    graph.selectedNodeId = Number(nodeId);
 
     // rename webpage
     document.title = nodeMetas.label + ' - Otetosphère';
 
-    if (mustZoom) {zoomToNode(nodeId);}
+    if (mustZoom) { zoomToNode(nodeId); }
 
     fiche.fill();
     fiche.open();
@@ -404,19 +521,19 @@ var board = {
     init: function() {
         this.engine.empty();
 
-        // nodes become cards in alphabetical order
-        network.data.nodes.forEach((entity) => {
-            var card = new Card;
-            card.id = entity.id;
-            card.label = entity.label;
-            card.labelFirstLetter = entity.sortName.charAt(0);
-            card.title = (entity.title || '');
-            card.img = entity.image;
+        this.engine.cards = graph.elts.nodes.filter(node => node.hidden !== true)
+            .data()
+            .sort(function (a, b) { return a.sortName.localeCompare(b.sortName); })
+            .map(function(d) {
+                let card = new Card;
+                card.id = d.id;
+                card.label = d.label;
+                card.labelFirstLetter = d.sortName.charAt(0);
+                card.title = (d.title || '');
+                card.img = d.image;
 
-            if (entity.hidden === false) {
-                this.engine.cards.push(card); }
-
-        }, { order: 'sortName' });
+                return card;
+            });
 
         this.engine.init();
     }
@@ -595,16 +712,19 @@ var filter = {
             let isActiveGroup = true;
         
             btn.addEventListener('click', () => {
-
-                network.visualisation.stabilize();
         
                 if (isActiveGroup) {
-                    network.data.nodes.get({
-                        filter: function (item) {
-                            if (item[type] == meta) {
-                                network.data.nodes.update({id: item.id, hidden: true}) }
-                        }
-                    });
+                    graph.elts.nodes.filter(node => node[type] == meta)
+                        .each(function(d) {
+                            d.hidden = true;
+
+                            const ntw = getNodeNetwork(d.id)
+                                , node = ntw.node
+                                , links = ntw.links;
+
+                            node.style('display', 'none');
+                            links.style('display', 'none');
+                        });
 
                     // activation visuelle boutons filtre de entête et volet
                     document.querySelectorAll('[data-meta="' + btn.dataset.meta + '"]').forEach(btn => {
@@ -612,12 +732,17 @@ var filter = {
         
                     isActiveGroup = false;
                 } else {
-                    network.data.nodes.get({
-                        filter: function (item) {
-                            if (item[type] == meta) {
-                                network.data.nodes.update({id: item.id, hidden: false}) }
-                        }
-                    });
+                    graph.elts.nodes.filter(node => node[type] == meta)
+                        .each(function(d) {
+                            d.hidden = false;
+
+                            const ntw = getNodeNetwork(d.id)
+                                , node = ntw.node
+                                , links = ntw.links;
+
+                            node.style('display', null);
+                            links.style('display', null);
+                        });
 
                     // deactivation visuelle boutons filtre de entête et volet
                     document.querySelectorAll('[data-meta="' + btn.dataset.meta + '"]').forEach(btn => {
@@ -646,9 +771,6 @@ filter.volet.btnClose.addEventListener('click', () => {
  * ================================================================================================
  * Display the description bar & its fields
  */
-
-
-const overflow = document.querySelector('#overflow');
 
 var fiche = {
     body: document.querySelector('#fiche'),
@@ -766,6 +888,7 @@ var fiche = {
 
             var listElt = document.createElement('li');
             listElt.textContent = connectedNode.label;
+            listElt.setAttribute('title', connectedNode.title);
             this.fields.connexion.appendChild(listElt);
 
             var puceColored = document.createElement('span');
@@ -776,27 +899,15 @@ var fiche = {
                 switchNode(connectedNode.id);
                 historique.actualiser(connectedNode.id);
             });
-            // link description frame at scroll on list element
-            if (connectedNode.title !== null) {
-                listElt.addEventListener('mouseenter', (e) => {
-                    overflow.classList.add('active');
-                    overflow.style.left = e.pageX + 20 + 'px';
-                    overflow.style.top = e.pageY - overflow.offsetHeight + 'px';
-                    overflow.textContent = connectedNode.title;
-                })
-
-                listElt.addEventListener('mouseout', () => {
-                    overflow.classList.remove('active'); })
-            }
         }
     },
     /**
      * Feed all fields from the description bar about the selected entity
      */
     fill: function() {
-        const nodeMetas = getNodeMetas(network.selectedNode)
+        const nodeMetas = getNodeMetas(graph.selectedNodeId)
         if (nodeMetas === false)  { return ; }
-        const nodeConnectedList = findConnectedNodes(network.selectedNode);
+        const nodeConnectedList = findConnectedNodes(graph.selectedNodeId);
 
         // show description bar fields
         this.content.classList.add('visible');
@@ -808,7 +919,7 @@ var fiche = {
 
         this.setImage(nodeMetas.image, nodeMetas.label);
         this.setWikiLink(nodeMetas.lien_wikipedia);
-        this.setPermaLink(network.selectedNode);
+        this.setPermaLink(graph.selectedNodeId);
 
         this.setConnexion(nodeConnectedList);
     }
@@ -820,7 +931,7 @@ fiche.toggle.addEventListener('click', () => {
 });
 
 fiche.fields.title.addEventListener('click', () => {
-    switchNode(network.selectedNode); });
+    switchNode(graph.selectedNodeId); });
 
 
 /**
@@ -850,7 +961,7 @@ var search = {
 
         resultElement.addEventListener('click', () => {
 
-            if (network.selectedNode !== undefined && network.selectedNode == nodeId) {
+            if (graph.selectedNodeId !== undefined && graph.selectedNodeId == nodeId) {
                 // si cette id correpond à celle du nœeud selectionné
                 return;
             }
@@ -871,14 +982,14 @@ var search = {
     },
     init: function() {
 
-        const noHiddenNodes = network.data.nodes.map(entite => ({
-            id: entite.id,
-            label: entite.label
-        }), {
-            filter: function(entite) {
-                return(entite.hidden !== true);
-            }
-        })
+        const noHiddenNodes = graph.elts.nodes.filter(node => node.hidden !== true)
+            .data()
+            .map(function(d) {
+                return {
+                    id: d.id,
+                    label: d.label
+                }
+            });
 
         const fuse = new Fuse(noHiddenNodes, search.options);
 
@@ -951,27 +1062,20 @@ langage.flags.forEach(flag => {
         langage.translateAll();
 
         // translate graph & entities metas
-        network.data.nodes.update(
-            network.data.nodes.map(function(entite) {
-                if (!entite[langage.actual]) { return; }
-                return {
-                    id: entite.id,
-                    title: entite[langage.actual].title,
-                    description: entite[langage.actual].description,
-                    domaine: entite[langage.actual].domaine,
-                    pays: entite[langage.actual].pays,
-                };
-            })
-        );
-        network.data.edges.update(
-            network.data.nodes.map(function(lien) {
-                if (!lien[langage.actual]) { return; }
-                return {
-                    id: lien.id,
-                    title: lien[langage.actual].title,
-                };
-            })
-        );
+        graph.elts.nodes.each(function(d) {
+            if (!d[langage.actual]) { return; }
+
+            d.title = d[langage.actual].title,
+            d.description = d[langage.actual].description,
+            d.domaine = d[langage.actual].domaine,
+            d.pays = d[langage.actual].pays
+        });
+
+        graph.elts.links.each(function(d) {
+            if (!d[langage.actual]) { return; }
+
+            d.title = d[langage.actual].title
+        });
 
         fiche.fill();
         board.init();
@@ -988,6 +1092,11 @@ langage.flags.forEach(flag => {
  * Manage the point of view of the user on the graph, on nodes
  */
 
+graph.zoomParams = {
+    zoomInterval: 0.3, // interval between two (de)zoom
+    zoomMax: 3,
+    zoomMin: 1
+}
 
 var zoom = {
     btnPlus: document.querySelector('#zoom-plus'),
@@ -996,49 +1105,77 @@ var zoom = {
     interval: 0.1
 }
 
-function zoomToNode(nodeId) {
-    var nodeId = Number(nodeId);
-    var nodeCoordonates = network.visualisation.getPosition(nodeId);
-    
-    if (network.data.nodes.get(nodeId).hidden === true) {
-        // si le nœeud est hidden
+graph.svg.call(d3.zoom().on('zoom', function () {
+    // for each move one the SVG
+
+    if (d3.event.sourceEvent === null) {
+        zoomMore();
         return;
     }
 
-    network.visualisation.moveTo({
-        position: {
-            x: nodeCoordonates.x + 100,
-            y: nodeCoordonates.y
-        },
-        scale: network.zoom.max,
-        animation: true
-    });
-}
+    switch (d3.event.sourceEvent.type) {
+        case 'wheel':
+            // by mouse wheel
+            if (d3.event.sourceEvent.deltaY >= 0) {
+                zoomLess();
+            } else {
+                zoomMore();
+            }
+            break;
 
-function zoomIn() {
-    var scale = network.visualisation.getScale() + zoom.interval;
-
-    if (scale >= network.zoom.max) {
-        // si l'échelle de zoom dépasse le maximum, elle s'y limite
-        scale = network.zoom.max
+        case 'mousemove':
+            // by drag and move with mouse
+            graph.pos.x += d3.event.sourceEvent.movementX;
+            graph.pos.y += d3.event.sourceEvent.movementY;
+    
+            translate();
+            break;
     }
+}));
 
-    network.visualisation.moveTo({ scale: scale });
+function zoomMore() {
+    graph.pos.zoom += graph.zoomParams.zoomInterval;
+
+    if (graph.pos.zoom >= graph.zoomParams.zoomMax) {
+        graph.pos.zoom = graph.zoomParams.zoomMax; }
+
+    translate();
 }
 
-function zoomOut() {
-    var scale = network.visualisation.getScale() - zoom.interval;
+function zoomLess() {
+    graph.pos.zoom -= graph.zoomParams.zoomInterval;
 
-    if (scale <= network.zoom.min) {
-        // si l'échelle de zoom dépasse le minium, elle s'y limite
-        scale = network.zoom.min
-    }
+    if (graph.pos.zoom <= graph.zoomParams.zoomMin) {
+        graph.pos.zoom = graph.zoomParams.zoomMin; }
 
-    network.visualisation.moveTo({ scale: scale });
+    translate();
 }
 
-function backToCenterView() {
-    network.visualisation.fit({ animation: true });
+function zoomReset() {
+    graph.pos.zoom = 1;
+    graph.pos.x = 0;
+    graph.pos.y = 0;
+
+    translate();
+}
+
+function translate() {
+    graph.svg.attr('style', `transform:translate(${graph.pos.x}px, ${graph.pos.y}px) scale(${graph.pos.zoom});`);
+}
+
+function zoomToNode(nodeId) {
+    const nodeToZoomMetas = graph.elts.nodes.filter(node => node.id === nodeId).datum()
+        , x = nodeToZoomMetas.x
+        , y = nodeToZoomMetas.y
+        , zoom = 2;
+
+    graph.pos = {
+        zoom: zoom,
+        x: graph.width - zoom * x,
+        y: graph.height - zoom * y
+    };
+
+    translate();
 }
 
 
